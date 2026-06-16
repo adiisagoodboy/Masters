@@ -7,16 +7,20 @@
 <style>
   :root {
     --bg:#F4F6FB; --bg2:#E8ECF7; --bg3:#DDE3F2;
-    --accent:#7B8EC8; --text:#1E2340; --text2:#5A6380;
-    --card:#FFFFFF; --border:#CDD3EC;
+    --accent:#7B8EC8; --text:#1A1F38; --text2:#4A526A;
+    --card:#FFFFFF; --border:#C8D0E8;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.65;font-size:15px;}
   a{color:var(--accent);text-decoration:none;}
 
-  .hero{background:linear-gradient(135deg,#EEF1FF,#E4E8F8,#EBF0FF);padding:56px 40px 36px;text-align:center;border-bottom:2px solid var(--accent);}
-  .hero h1{font-size:2.3rem;font-weight:800;background:linear-gradient(90deg,#7B8EC8,#9B7EC8,#7B8EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
-  .hero p{color:var(--text2);font-size:1rem;}
+  /* ── COLLAPSIBLE SECTIONS ── */
+  .panel{display:none;}
+  .panel.open{display:block;animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .panel-toggle-hint{text-align:center;padding:10px;font-size:.8rem;color:var(--text2);}
+  .panel-toggle-hint span{cursor:pointer;color:var(--accent);font-weight:600;}
+  .panel-toggle-hint span:hover{text-decoration:underline;}
 
   .section{max-width:1000px;margin:0 auto;padding:0 20px;}
 
@@ -115,11 +119,46 @@
 
   footer{text-align:center;padding:28px;color:var(--text2);font-size:.8rem;border-top:1px solid var(--border);}
 
-  @media(max-width:640px){
-    .hero h1{font-size:1.55rem;}
+  @media(max-width:768px){
+    .hero h1{font-size:1.7rem;}
+    .hero p{font-size:.82rem;}
+    .navbar-top{padding:8px 14px 0;}
+    .navbar-logo{font-size:.85rem;}
+    .navbar-links{padding:3px 6px 5px;gap:1px;}
+    .nav-link{font-size:.7rem;padding:4px 5px;}
+    .profile-strip{gap:12px;padding:12px 14px;}
+    .pi .pv{font-size:.85rem;}
+    .stats{gap:8px;}
+    .stat{padding:10px 14px;min-width:90px;}
+    .sn{font-size:1.4rem;}
+    .sl{font-size:.65rem;}
     .detail-grid{grid-template-columns:1fr;}
     .cost-row-inner{flex-direction:column;}
     .card-top{flex-direction:column;}
+    .card{flex-direction:column;}
+    .card-bar{width:100%;height:4px;}
+    .countdown-row,.picks-row{grid-template-columns:1fr;}
+    .strategy-grid{grid-template-columns:1fr;}
+    .cal-layout{grid-template-columns:1fr;}
+    .cal-sidebar{position:static;max-height:none;}
+    .cards{padding:0 10px 40px;}
+    .card-body{padding:14px 16px;}
+    .cost-box{padding:10px 12px;}
+    .cost-item{min-width:90px;}
+    .match-excellent,.match-strong{font-size:.72rem;}
+    .apply-btn{padding:7px 14px;font-size:.8rem;}
+    .summary-section,.ongoing-section,.cal-section,.tbl-section,.tl-section{padding:0 12px;}
+    .ongoing-grid{grid-template-columns:1fr;}
+    .doc-grid{grid-template-columns:1fr;}
+    table{font-size:.72rem;}
+    th,td{padding:7px 8px;}
+    footer p{font-size:.74rem;}
+  }
+  @media(max-width:420px){
+    .hero h1{font-size:1.35rem;}
+    .nav-link{font-size:.64rem;padding:3px 4px;}
+    .navbar-user{display:none;}
+    .sn{font-size:1.2rem;}
   }
 
   /* ── NAVBAR ── */
@@ -134,25 +173,24 @@
   .nav-logout:hover{border-color:#E74C3C;color:#E74C3C;}
   @media(max-width:640px){.nav-link{font-size:.68rem;padding:4px 5px;}}
 
-  /* ── HERO UPGRADE ── */
-  .hero{background:linear-gradient(135deg,#E8ECF8 0%,#EEF1FF 40%,#E4E8F8 100%);padding:48px 40px 32px;text-align:center;border-bottom:2px solid var(--border);position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(123,142,200,.08);}
-  .hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:rgba(155,126,200,.06);}
-  .hero h1{font-size:2.6rem;font-weight:900;background:linear-gradient(110deg,#5A72B8,#8E6AC8,#5A72B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;letter-spacing:-.5px;}
-  .hero p{color:var(--text2);font-size:.95rem;letter-spacing:.2px;}
+  /* ── HERO ── */
+  .hero{background:linear-gradient(135deg,#E8ECF8 0%,#EEF1FF 40%,#E4E8F8 100%);padding:44px 24px 28px;text-align:center;border-bottom:2px solid var(--border);position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(123,142,200,.07);}
+  .hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:rgba(155,126,200,.05);}
+  .hero h1{font-size:2.2rem;font-weight:900;background:linear-gradient(110deg,#4A62A8,#7B5EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;letter-spacing:-.3px;}
+  .hero p{color:var(--text2);font-size:.9rem;}
 
-  /* ── STAT CARDS UPGRADE ── */
-  .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:20px auto;max-width:1000px;padding:0 20px;}
-  .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 26px;text-align:center;box-shadow:0 2px 8px rgba(123,142,200,.08);transition:transform .2s,box-shadow .2s;}
-  .stat:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(123,142,200,.15);}
-  .sn{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--accent),#9B7EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .sl{font-size:.75rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+  /* ── STATS ── */
+  .stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px auto;max-width:1000px;padding:0 20px;}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 22px;text-align:center;box-shadow:0 2px 8px rgba(123,142,200,.07);flex:1;min-width:120px;}
+  .sn{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,var(--accent),#8E6AC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .sl{font-size:.72rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
 
-  /* ── PROFILE STRIP UPGRADE ── */
-  .profile-strip{background:linear-gradient(135deg,var(--card),#EEF1FF);border:1px solid var(--border);border-radius:16px;margin:24px auto;max-width:1000px;padding:20px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;box-shadow:0 2px 12px rgba(123,142,200,.1);}
-  .pi .pl{font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
-  .pi .pv{font-size:.98rem;font-weight:700;}
-  .pi .pv.good{color:#1E8449;}
+  /* ── PROFILE STRIP ── */
+  .profile-strip{background:linear-gradient(135deg,var(--card),#EEF1FF);border:1px solid var(--border);border-radius:14px;margin:16px auto;max-width:1000px;padding:16px 24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;box-shadow:0 2px 8px rgba(123,142,200,.08);}
+  .pi .pl{font-size:.67rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+  .pi .pv{font-size:.93rem;font-weight:700;color:var(--text);}
+  .pi .pv.good{color:#1A7A43;}
 
   /* ── SUMMARY SECTION ── */
   .summary-section{max-width:1000px;margin:0 auto 36px;padding:0 20px;}
@@ -292,13 +330,13 @@
     <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
   </div>
   <div class="navbar-links">
-    <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
-    <button class="nav-link" onclick="smoothTo('summary-section')">📊 Summary</button>
-    <button class="nav-link" onclick="smoothTo('ongoing-section')">🔄 Ongoing</button>
-    <button class="nav-link" onclick="smoothTo('cal-section')">📅 Calendar</button>
+    <button class="nav-link" onclick="navToggle('home')">🏠 Home</button>
+    <button class="nav-link" id="nav-summary" onclick="navToggle('summary-section')">📊 Summary</button>
+    <button class="nav-link" id="nav-ongoing" onclick="navToggle('ongoing-section')">🔄 Ongoing</button>
+    <button class="nav-link" id="nav-cal" onclick="navToggle('cal-section')">📅 Calendar</button>
     <button class="nav-link" onclick="smoothTo('profile-section')">👤 Profile</button>
-    <button class="nav-link" onclick="smoothTo('tbl-section')">📋 Compare</button>
-    <button class="nav-link" onclick="smoothTo('tl-section')">🗓 Roadmap</button>
+    <button class="nav-link" id="nav-tbl" onclick="navToggle('tbl-section')">📋 Compare</button>
+    <button class="nav-link" id="nav-tl" onclick="navToggle('tl-section')">🗓 Roadmap</button>
     <a class="nav-link" href="vault.html">🗂 Docs</a>
   </div>
 </nav>
@@ -330,7 +368,8 @@
 </div>
 </div>
 
-<div class="summary-section" id="summary-section">
+<div class="panel" id="summary-section">
+<div class="summary-section">
   <h2>📊 Summary &amp; Strategy</h2>
 
   <!-- Countdown to next 3 deadlines -->
@@ -409,13 +448,17 @@
   </div>
 </div>
 
-<div class="ongoing-section" id="ongoing-section">
+</div></div><!-- /summary panel -->
+
+<div class="panel" id="ongoing-section">
+<div class="ongoing-section">
   <h2>📊 Ongoing Applications</h2>
   <p class="ongoing-note">Universities where you've started ticking tasks in the Calendar. Progress is saved in your browser.</p>
   <div class="ongoing-grid" id="ongoing-grid">
     <p class="ongoing-empty">No applications tracked yet — tick events in the Calendar below to start tracking progress here.</p>
   </div>
 </div>
+</div></div><!-- /ongoing panel -->
 
 <div class="controls">
   <label>Region:</label>
@@ -2831,7 +2874,7 @@
   </div>
 </div></div>
 
-<div class="cal-section" id="cal-section">
+<div class="panel" id="cal-section"><div class="cal-section">
   <h2>📅 Application Calendar</h2>
   <p class="cal-note">⚠️ Deadlines shown are best-effort based on university portals — always verify directly with each university before submitting. Tick events as done to track your progress (saved in your browser).</p>
   <div class="cal-layout">
@@ -2929,7 +2972,9 @@
   </div>
 </div>
 
-<div class="tbl-section" id="tbl-section">
+</div></div><!-- /cal panel -->
+
+<div class="panel" id="tbl-section"><div class="tbl-section">
   <h2>📊 Complete Comparison — All-In Cost (Tuition + Living)</h2>
   <div class="tw">
   <table>
@@ -3303,7 +3348,9 @@
   </div>
 </div>
 
-<div class="tl-section">
+</div></div><!-- /tbl panel -->
+
+<div class="panel" id="tl-section"><div class="tl-section">
   <h2>🗓️ Application Roadmap — Winter 2027</h2>
   <div class="tl">
     <div class="tli"><div class="dot" style="background:#E67E22"></div><div class="tdate" id="tl-now-date">— NOW</div><div class="ttitle">Start Immediately</div><div class="tbody">Apply for APS Certificate at German Embassy India (~3–5 months, €165). Register for GRE — take free diagnostic on ETS website. Begin IELTS prep. Get certified VIT transcripts. Start shortlisting universities.</div></div>
@@ -3320,6 +3367,8 @@
     <div class="tli"><div class="dot" style="background:#27AE60"></div><div class="tdate">Oct 2027 🎉</div><div class="ttitle">Start Your MSc!</div><div class="tbody">Begin Winter 2027 semester. For Australia/Singapore July 2027 intake, start July 2027.</div></div>
   </div>
 </div>
+
+</div></div><!-- /tl panel -->
 
 <footer>
   <p>Built for Aditya · VIT Chennai · BTech CSE AI & Robotics · 9.53 CGPA · Winter 2027</p>
@@ -3359,6 +3408,39 @@ function smoothTo(id) {
 function doLogout() {
   sessionStorage.removeItem('msc-auth');
   location.replace('login.html');
+}
+
+const PANELS = ['summary-section','ongoing-section','cal-section','tbl-section','tl-section'];
+const NAV_IDS = {'summary-section':'nav-summary','ongoing-section':'nav-ongoing','cal-section':'nav-cal','tbl-section':'nav-tbl','tl-section':'nav-tl'};
+
+function navToggle(id) {
+  if(id === 'home') {
+    PANELS.forEach(p => {
+      document.getElementById(p)?.classList.remove('open');
+      const nb = document.getElementById(NAV_IDS[p]);
+      if(nb) nb.style.color = '';
+    });
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+  const panel = document.getElementById(id);
+  if(!panel) return;
+  const isOpen = panel.classList.contains('open');
+  PANELS.forEach(p => {
+    document.getElementById(p)?.classList.remove('open');
+    const nb = document.getElementById(NAV_IDS[p]);
+    if(nb) nb.style.color = '';
+  });
+  if(!isOpen) {
+    panel.classList.add('open');
+    const nb = document.getElementById(NAV_IDS[id]);
+    if(nb) nb.style.color = 'var(--accent)';
+    setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+    // Lazy render heavy sections on first open
+    if(id === 'cal-section' && typeof renderCal === 'function') renderCal();
+    if(id === 'ongoing-section' && typeof renderOngoing === 'function') renderOngoing();
+    if(id === 'summary-section' && typeof renderSummary === 'function') renderSummary();
+  }
 }
 </script>
 <script src="calendar-data.js"></script>
@@ -3606,30 +3688,27 @@ renderSummary();
   const tlNow = document.getElementById('tl-now-date');
   if(tlNow) tlNow.textContent = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'})+' — NOW';
 
-  // Dynamic alert box — show next 6 undone upcoming tasks sorted by date
+  // Dynamic alert box — 3 most urgent undone tasks
   if(typeof CAL_EVENTS !== 'undefined') {
     const upcoming = CAL_EVENTS
       .filter(e => e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
       .sort((a,b) => a.date.localeCompare(b.date))
-      .slice(0, 6);
-
+      .slice(0, 3);
     const monthLabel = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
-    let html = `<h3>🔔 Upcoming Tasks — as of ${monthLabel}</h3><ul>`;
-
     if(!upcoming.length) {
-      html = `<h3>🎉 All tasks complete as of ${monthLabel}!</h3>`;
+      document.getElementById('alert-box').innerHTML = `<h3>🎉 All tasks complete — ${monthLabel}</h3>`;
     } else {
+      let html = `<h3>🔔 Next Up — ${monthLabel}</h3><ul>`;
       upcoming.forEach(e => {
         const d = new Date(e.date+'T12:00:00');
-        const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+        const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
         const days = Math.ceil((d - now) / 86400000);
-        const urgency = days <= 14 ? ' 🔴 '+days+'d left' : days <= 60 ? ' 🟡 '+days+'d' : '';
-        const name = CAL_NAMES[e.uni] ? '['+CAL_NAMES[e.uni]+'] ' : '';
-        html += `<li>${dl}: ${name}${e.title}${urgency}</li>`;
+        const urgency = days <= 14 ? ` <span style="color:#C0392B;font-weight:700">⚡${days}d</span>` : days <= 60 ? ` <span style="color:#C67C2B">●${days}d</span>` : '';
+        html += `<li>${dl} · ${e.title}${urgency}</li>`;
       });
-      html += '</ul>';
+      html += `</ul><div class="panel-toggle-hint"><span onclick="navToggle('cal-section')">See all tasks in Calendar →</span></div>`;
+      document.getElementById('alert-box').innerHTML = html;
     }
-    document.getElementById('alert-box').innerHTML = html;
   }
 })();
 </script>
