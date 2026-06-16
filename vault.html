@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Document Vault — Aditya's MSc Guide</title>
+<style>
+:root{--bg:#F4F6FB;--bg2:#E8ECF7;--bg3:#DDE3F2;--accent:#7B8EC8;--text:#1E2340;--text2:#5A6380;--card:#FFFFFF;--border:#CDD3EC;--green:#27AE60;--orange:#E67E22;--red:#E74C3C;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+
+/* NAVBAR */
+.navbar{background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(123,142,200,.1);}
+.navbar-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:52px;gap:0;}
+.navbar-logo{font-size:.95rem;font-weight:800;color:var(--text);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;}
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;}
+.nav-link{padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;white-space:nowrap;}
+.nav-link:hover,.nav-link.active{background:var(--bg2);color:var(--text);}
+.nav-link.active{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-logout{padding:5px 12px;font-size:.78rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;font-weight:600;font-family:inherit;}
+.nav-logout:hover{border-color:var(--red);color:var(--red);}
+
+/* MAIN */
+.wrap{max-width:1000px;margin:0 auto;padding:32px 20px 60px;}
+.page-header{margin-bottom:24px;}
+.page-header h1{font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:4px;}
+.page-header p{font-size:.88rem;color:var(--text2);}
+.privacy-note{background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.3);border-radius:10px;padding:12px 16px;margin-bottom:24px;font-size:.82rem;color:#8B5E00;}
+.privacy-note strong{color:#7A4F00;}
+
+/* SECTIONS */
+.vault-section{margin-bottom:32px;}
+.vault-section h2{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px;}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+
+/* DOC CARD */
+.doc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:box-shadow .2s;position:relative;}
+.doc-card:hover{box-shadow:0 4px 16px rgba(123,142,200,.15);}
+.doc-card.has-link{border-color:rgba(39,174,96,.4);}
+.doc-icon{font-size:2rem;margin-bottom:10px;}
+.doc-name{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+.doc-desc{font-size:.76rem;color:var(--text2);margin-bottom:12px;line-height:1.5;}
+.doc-status{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;margin-bottom:10px;}
+.status-linked{background:rgba(39,174,96,.12);color:#1E8449;}
+.status-missing{background:rgba(123,142,200,.1);color:var(--text2);}
+.doc-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.btn{padding:6px 12px;font-size:.76rem;border-radius:7px;cursor:pointer;font-weight:600;font-family:inherit;border:none;transition:opacity .2s;}
+.btn:hover{opacity:.85;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text2);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn-danger{background:transparent;border:1px solid rgba(231,76,60,.3);color:var(--red);}
+.btn-danger:hover{background:rgba(231,76,60,.08);}
+.doc-link-wrap{margin-bottom:10px;}
+.doc-link-wrap a{font-size:.78rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:4px;}
+.doc-link-wrap a:hover{text-decoration:underline;}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(30,35,64,.4);z-index:500;align-items:center;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--card);border-radius:16px;padding:28px;width:100%;max-width:460px;margin:20px;}
+.modal h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+.modal p{font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5;}
+.modal input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:.9rem;color:var(--text);background:var(--bg);font-family:inherit;outline:none;}
+.modal input:focus{border-color:var(--accent);}
+.modal-actions{display:flex;gap:8px;margin-top:14px;justify-content:flex-end;}
+
+/* CHECKLIST */
+.checklist-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.check-item:last-child{border-bottom:none;}
+.check-box{width:17px;height:17px;border:2px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:transparent;transition:all .2s;}
+.check-box.done{background:var(--green);border-color:var(--green);color:#fff;}
+.check-label{font-size:.85rem;color:var(--text);}
+.check-label.crossed{text-decoration:line-through;color:var(--text2);}
+.check-sub{font-size:.75rem;color:var(--text2);margin-top:1px;}
+
+@media(max-width:600px){.navbar-logo{display:none;}.doc-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html?next='+encodeURIComponent(location.href));}</script>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-logo">🎓 MSc Guide</div>
+    <div class="nav-links">
+      <a class="nav-link" href="MSc_Global_Guide.html">🏠 Home</a>
+      <a class="nav-link" href="MSc_Global_Guide.html#ongoing-section">📊 Ongoing</a>
+      <a class="nav-link" href="MSc_Global_Guide.html#cal-section">📅 Calendar</a>
+      <a class="nav-link active" href="vault.html">🗂 Documents</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-logout" onclick="sessionStorage.removeItem('msc-auth');location.replace('login.html');">↩ Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <h1>🗂 Document Vault</h1>
+    <p>All documents you'll need for MSc applications — organised in one place.</p>
+  </div>
+
+  <div class="privacy-note">
+    ⚠️ <strong>Privacy note:</strong> This vault stores links, not files. Add Google Drive / OneDrive share links below — your actual files stay in Drive where you control access. Do NOT paste links that auto-download sensitive files publicly unless you've set the Drive permissions correctly.
+  </div>
+
+  <!-- CORE IDENTITY DOCS -->
+  <div class="vault-section">
+    <h2>🪪 Identity & Core Documents</h2>
+    <div class="doc-grid">
+
+      <div class="doc-card" id="card-resume">
+        <div class="doc-icon">📄</div>
+        <div class="doc-name">Resume / CV</div>
+        <div class="doc-desc">Academic CV with education, projects, research, skills, awards. Keep updated regularly.</div>
+        <div id="status-resume" class="doc-status status-missing">Not linked</div>
+        <div id="link-resume" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('resume','Resume / CV')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-resume" onclick="copyLink('resume')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-resume" onclick="deleteDoc('resume')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-photo">
+        <div class="doc-icon">🖼️</div>
+        <div class="doc-name">Passport-size Photo</div>
+        <div class="doc-desc">Recent white background photo. Most universities need this for the application portal.</div>
+        <div id="status-photo" class="doc-status status-missing">Not linked</div>
+        <div id="link-photo" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('photo','Passport Photo')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-photo" onclick="copyLink('photo')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-photo" onclick="deleteDoc('photo')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-passport">
+        <div class="doc-icon">🛂</div>
+        <div class="doc-name">Passport Copy</div>
+        <div class="doc-desc">Colour scan of bio-data page. Required for every university application and visa.</div>
+        <div id="status-passport" class="doc-status status-missing">Not linked</div>
+        <div id="link-passport" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('passport','Passport Copy')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-passport" onclick="copyLink('passport')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-passport" onclick="deleteDoc('passport')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACADEMIC DOCUMENTS -->
+  <div class="vault-section">
+    <h2>🎓 Academic Documents</h2>
+    <div class="doc-grid">
+
+      <div class="doc-card" id="card-class10">
+        <div class="doc-icon">📜</div>
+        <div class="doc-name">Class 10 Marksheet</div>
+        <div class="doc-desc">CBSE / State board — original + certified copy. Required for APS Certificate (Germany) and some university portals.</div>
+        <div id="status-class10" class="doc-status status-missing">Not linked</div>
+        <div id="link-class10" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('class10','Class 10 Marksheet')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-class10" onclick="copyLink('class10')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-class10" onclick="deleteDoc('class10')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-class12">
+        <div class="doc-icon">📜</div>
+        <div class="doc-name">Class 12 Marksheet</div>
+        <div class="doc-desc">CBSE / State board — original + certified copy. Required for APS Certificate (Germany) and all university applications.</div>
+        <div id="status-class12" class="doc-status status-missing">Not linked</div>
+        <div id="link-class12" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('class12','Class 12 Marksheet')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-class12" onclick="copyLink('class12')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-class12" onclick="deleteDoc('class12')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-transcripts">
+        <div class="doc-icon">📋</div>
+        <div class="doc-name">VIT Transcripts (Sem 1–6)</div>
+        <div class="doc-desc">Official sealed transcripts from VIT Chennai registrar. Current CGPA: 9.53/10. Get multiple certified copies.</div>
+        <div id="status-transcripts" class="doc-status status-missing">Not linked</div>
+        <div id="link-transcripts" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('transcripts','VIT Transcripts')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-transcripts" onclick="copyLink('transcripts')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-transcripts" onclick="deleteDoc('transcripts')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-degree">
+        <div class="doc-icon">🏛️</div>
+        <div class="doc-name">Provisional Degree Certificate</div>
+        <div class="doc-desc">Issued by VIT after graduation (~May 2027). Required for enrollment. Keep this safe.</div>
+        <div id="status-degree" class="doc-status status-missing">Not linked</div>
+        <div id="link-degree" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('degree','Degree Certificate')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-degree" onclick="copyLink('degree')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-degree" onclick="deleteDoc('degree')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TEST SCORES -->
+  <div class="vault-section">
+    <h2>📝 Test Scores</h2>
+    <div class="doc-grid">
+
+      <div class="doc-card" id="card-gre">
+        <div class="doc-icon">🧮</div>
+        <div class="doc-name">GRE Score Report</div>
+        <div class="doc-desc">ETS official score report. Required for ETH Zurich, RWTH Aachen, Aalto, NUS. Target: Quant 164+.</div>
+        <div id="status-gre" class="doc-status status-missing">Not linked</div>
+        <div id="link-gre" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('gre','GRE Score Report')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-gre" onclick="copyLink('gre')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-gre" onclick="deleteDoc('gre')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-ielts">
+        <div class="doc-icon">🌐</div>
+        <div class="doc-name">IELTS / TOEFL Score Report</div>
+        <div class="doc-desc">English proficiency certificate. Required by all programs. Target: IELTS 7.0+ or TOEFL 100+.</div>
+        <div id="status-ielts" class="doc-status status-missing">Not linked</div>
+        <div id="link-ielts" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('ielts','IELTS / TOEFL Report')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-ielts" onclick="copyLink('ielts')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-ielts" onclick="deleteDoc('ielts')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-gate">
+        <div class="doc-icon">⚙️</div>
+        <div class="doc-name">GATE Score Card</div>
+        <div class="doc-desc">Accepted instead of GRE at NUS Singapore and Saarland University. Useful to have if appearing.</div>
+        <div id="status-gate" class="doc-status status-missing">Not linked</div>
+        <div id="link-gate" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('gate','GATE Score Card')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-gate" onclick="copyLink('gate')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-gate" onclick="deleteDoc('gate')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLICATION DOCS -->
+  <div class="vault-section">
+    <h2>✍️ Application Documents</h2>
+    <div class="doc-grid">
+
+      <div class="doc-card" id="card-sop">
+        <div class="doc-icon">📝</div>
+        <div class="doc-name">Statement of Purpose (SOP)</div>
+        <div class="doc-desc">Master draft SOP — tailor per university. Focus: AI & Robotics background, research interests, career goals.</div>
+        <div id="status-sop" class="doc-status status-missing">Not linked</div>
+        <div id="link-sop" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('sop','Statement of Purpose')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-sop" onclick="copyLink('sop')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-sop" onclick="deleteDoc('sop')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-lor1">
+        <div class="doc-icon">📩</div>
+        <div class="doc-name">Letter of Recommendation 1</div>
+        <div class="doc-desc">From primary research supervisor / professor at VIT. Should highlight academic ability and research potential.</div>
+        <div id="status-lor1" class="doc-status status-missing">Not linked</div>
+        <div id="link-lor1" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('lor1','LOR 1')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-lor1" onclick="copyLink('lor1')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-lor1" onclick="deleteDoc('lor1')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-lor2">
+        <div class="doc-icon">📩</div>
+        <div class="doc-name">Letter of Recommendation 2</div>
+        <div class="doc-desc">From another professor / project supervisor. Highlights technical skills and performance in courses.</div>
+        <div id="status-lor2" class="doc-status status-missing">Not linked</div>
+        <div id="link-lor2" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('lor2','LOR 2')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-lor2" onclick="copyLink('lor2')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-lor2" onclick="deleteDoc('lor2')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-lor3">
+        <div class="doc-icon">📩</div>
+        <div class="doc-name">Letter of Recommendation 3</div>
+        <div class="doc-desc">From a third referee — can be industry mentor or professor. Some universities require 3 LORs.</div>
+        <div id="status-lor3" class="doc-status status-missing">Not linked</div>
+        <div id="link-lor3" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('lor3','LOR 3')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-lor3" onclick="copyLink('lor3')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-lor3" onclick="deleteDoc('lor3')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+      <div class="doc-card" id="card-aps">
+        <div class="doc-icon">🏛️</div>
+        <div class="doc-name">APS Certificate</div>
+        <div class="doc-desc">Akademische Prüfstelle — mandatory for ALL German university applications. Apply now (June 2026) — takes 3–5 months.</div>
+        <div id="status-aps" class="doc-status status-missing">Not linked</div>
+        <div id="link-aps" class="doc-link-wrap" style="display:none"></div>
+        <div class="doc-actions">
+          <button class="btn btn-primary" onclick="openModal('aps','APS Certificate')">+ Add Link</button>
+          <button class="btn btn-outline" id="copy-aps" onclick="copyLink('aps')" style="display:none">📋 Copy</button>
+          <button class="btn btn-danger" id="del-aps" onclick="deleteDoc('aps')" style="display:none">Remove</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLICATION READINESS CHECKLIST -->
+  <div class="vault-section">
+    <h2>✅ Application Readiness Checklist</h2>
+    <div class="checklist-wrap" id="readiness-list"></div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3 id="modal-title">Add Document Link</h3>
+    <p>Paste a Google Drive, OneDrive, or Dropbox share link. Make sure the link is set to "Anyone with link can view".</p>
+    <input type="url" id="modal-input" placeholder="https://drive.google.com/file/d/...">
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveLink()">Save Link</button>
+    </div>
+  </div>
+</div>
+
+<script>
+if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html?next='+encodeURIComponent(location.href));}
+
+const DOCS = [
+  {id:'resume',name:'Resume / CV'},
+  {id:'photo',name:'Passport Photo'},
+  {id:'passport',name:'Passport Copy'},
+  {id:'class10',name:'Class 10 Marksheet'},
+  {id:'class12',name:'Class 12 Marksheet'},
+  {id:'transcripts',name:'VIT Transcripts'},
+  {id:'degree',name:'Degree Certificate'},
+  {id:'gre',name:'GRE Score Report'},
+  {id:'ielts',name:'IELTS / TOEFL Report'},
+  {id:'gate',name:'GATE Score Card'},
+  {id:'sop',name:'Statement of Purpose'},
+  {id:'lor1',name:'LOR 1'},
+  {id:'lor2',name:'LOR 2'},
+  {id:'lor3',name:'LOR 3'},
+  {id:'aps',name:'APS Certificate'},
+];
+
+const READINESS = [
+  {id:'r-resume',label:'Resume updated and ready',sub:'Reflect 6 semesters of VIT work — projects, research, skills'},
+  {id:'r-photo',label:'Passport photo taken (white background)',sub:'Digital + physical copies. Some portals need specific dimensions'},
+  {id:'r-passport',label:'Passport valid until at least Dec 2028',sub:'Most student visa requirements: passport valid for the full program duration'},
+  {id:'r-class10',label:'Class 10 marksheet — certified copy ready',sub:'Required for APS Certificate application'},
+  {id:'r-class12',label:'Class 12 marksheet — certified copy ready',sub:'Required for APS Certificate application'},
+  {id:'r-transcripts',label:'VIT transcripts ordered (Sem 1–6)',sub:'Get at least 10 certified sealed copies from VIT registrar'},
+  {id:'r-gre',label:'GRE exam booked / completed',sub:'Sep 2026 target. Score report sent to universities via ETS'},
+  {id:'r-ielts',label:'IELTS / TOEFL exam booked / completed',sub:'Sep 2026 target. 7.0+ overall for most programs'},
+  {id:'r-sop',label:'Master SOP drafted',sub:'Tailor per university before submitting — never send a generic SOP'},
+  {id:'r-lor',label:'3 professors approached for LOR',sub:'Give them at least 2 months notice with your CV and SOP'},
+  {id:'r-aps',label:'APS Certificate application submitted',sub:'Apply June 2026 — takes 3–5 months, costs €165'},
+  {id:'r-uniassist',label:'Registered on uni-assist.de',sub:'Required for German universities (RWTH, Saarland)'},
+];
+
+let currentModalId = '';
+
+function openModal(id, name) {
+  currentModalId = id;
+  document.getElementById('modal-title').textContent = 'Link: ' + name;
+  const existing = localStorage.getItem('vault:' + id) || '';
+  document.getElementById('modal-input').value = existing;
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal-input').focus();
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  currentModalId = '';
+}
+function saveLink() {
+  const url = document.getElementById('modal-input').value.trim();
+  if(!url) { closeModal(); return; }
+  localStorage.setItem('vault:' + currentModalId, url);
+  closeModal();
+  renderVault();
+}
+function deleteDoc(id) {
+  localStorage.removeItem('vault:' + id);
+  renderVault();
+}
+function copyLink(id) {
+  const url = localStorage.getItem('vault:' + id);
+  if(url) navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('copy-' + id);
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+function toggleReadiness(id) {
+  const k = 'ready:' + id;
+  localStorage.setItem(k, localStorage.getItem(k) === '1' ? '0' : '1');
+  renderReadiness();
+}
+
+function renderVault() {
+  DOCS.forEach(d => {
+    const url = localStorage.getItem('vault:' + d.id);
+    const card = document.getElementById('card-' + d.id);
+    const status = document.getElementById('status-' + d.id);
+    const linkWrap = document.getElementById('link-' + d.id);
+    const copyBtn = document.getElementById('copy-' + d.id);
+    const delBtn = document.getElementById('del-' + d.id);
+    if(url) {
+      card.classList.add('has-link');
+      status.textContent = '✓ Linked';
+      status.className = 'doc-status status-linked';
+      linkWrap.style.display = 'block';
+      linkWrap.innerHTML = `<a href="${url}" target="_blank">🔗 Open ${d.name} →</a>`;
+      copyBtn.style.display = 'inline-block';
+      delBtn.style.display = 'inline-block';
+    } else {
+      card.classList.remove('has-link');
+      status.textContent = 'Not linked';
+      status.className = 'doc-status status-missing';
+      linkWrap.style.display = 'none';
+      copyBtn.style.display = 'none';
+      delBtn.style.display = 'none';
+    }
+  });
+}
+
+function renderReadiness() {
+  const done = READINESS.filter(r => localStorage.getItem('ready:'+r.id) === '1').length;
+  const total = READINESS.length;
+  const pct = Math.round(done/total*100);
+  document.getElementById('readiness-list').innerHTML =
+    `<div style="margin-bottom:12px;">
+       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+         <span style="font-size:.88rem;font-weight:700;color:var(--text)">Overall Readiness</span>
+         <span style="font-size:.82rem;color:var(--text2)">${done}/${total} · ${pct}%</span>
+       </div>
+       <div style="background:var(--bg3);border-radius:6px;height:8px;overflow:hidden;">
+         <div style="height:8px;border-radius:6px;background:var(--accent);width:${pct}%;transition:width .4s;"></div>
+       </div>
+     </div>` +
+    READINESS.map(r => {
+      const done2 = localStorage.getItem('ready:'+r.id) === '1';
+      return `<div class="check-item">
+        <div class="check-box${done2?' done':''}" onclick="toggleReadiness('${r.id}')">${done2?'✓':''}</div>
+        <div>
+          <div class="check-label${done2?' crossed':''}">${r.label}</div>
+          <div class="check-sub">${r.sub}</div>
+        </div>
+      </div>`;
+    }).join('');
+}
+
+// Close modal on background click
+document.getElementById('modal').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+// Enter key saves
+document.getElementById('modal-input').addEventListener('keydown', function(e) {
+  if(e.key === 'Enter') saveLink();
+});
+
+renderVault();
+renderReadiness();
+</script>
+</body>
+</html>

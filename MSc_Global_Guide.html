@@ -124,16 +124,15 @@
 
   /* ── NAVBAR ── */
   .navbar{background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(123,142,200,.1);}
-  .navbar-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:52px;gap:0;}
-  .navbar-logo{font-size:.95rem;font-weight:800;color:var(--text);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;}
-  .navbar-links{display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto;}
-  .nav-link{padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;white-space:nowrap;cursor:pointer;border:none;background:none;font-family:inherit;}
+  .navbar-top{max-width:1100px;margin:0 auto;padding:10px 20px 0;display:flex;align-items:center;justify-content:space-between;}
+  .navbar-logo{font-size:1rem;font-weight:800;color:var(--text);}
+  .navbar-user{font-size:.78rem;color:var(--text2);}
+  .navbar-links{max-width:1100px;margin:0 auto;padding:4px 20px 6px;display:flex;align-items:center;justify-content:space-between;gap:2px;}
+  .nav-link{padding:5px 10px;font-size:.8rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;white-space:nowrap;cursor:pointer;border:none;background:none;font-family:inherit;flex:1;text-align:center;}
   .nav-link:hover{background:var(--bg2);color:var(--text);}
-  .navbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .navbar-user{font-size:.78rem;color:var(--text2);white-space:nowrap;}
-  .nav-logout{padding:5px 12px;font-size:.78rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;font-weight:600;font-family:inherit;}
+  .nav-logout{padding:4px 12px;font-size:.76rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;font-weight:600;font-family:inherit;}
   .nav-logout:hover{border-color:#E74C3C;color:#E74C3C;}
-  @media(max-width:640px){.navbar-logo{display:none;}.nav-link{padding:6px 8px;font-size:.74rem;}.navbar-user{display:none;}}
+  @media(max-width:640px){.nav-link{font-size:.68rem;padding:4px 5px;}}
 
   /* ── ONGOING APPLICATIONS ── */
   .ongoing-section{max-width:1000px;margin:0 auto 36px;padding:0 20px;}
@@ -217,20 +216,21 @@
 <script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html');}</script>
 
 <nav class="navbar">
-  <div class="navbar-inner">
-    <div class="navbar-logo">🎓 MSc Guide</div>
-    <div class="navbar-links">
-      <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
-      <button class="nav-link" onclick="smoothTo('ongoing-section')">📊 Ongoing Applications</button>
-      <button class="nav-link" onclick="smoothTo('cal-section')">📅 Central Calendar</button>
-      <button class="nav-link" onclick="smoothTo('profile-section')">👤 Personal Info</button>
-      <button class="nav-link" onclick="smoothTo('tbl-section')">📋 Compare All</button>
-      <button class="nav-link" onclick="smoothTo('tl-section')">🗓 Roadmap</button>
-    </div>
-    <div class="navbar-right">
-      <span class="navbar-user">Aditya · VIT Chennai · 9.52 CGPA</span>
+  <div class="navbar-top">
+    <div class="navbar-logo">🎓 Aditya's MSc Global Guide</div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="navbar-user">Aditya · VIT Chennai · 9.53 CGPA</span>
       <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
     </div>
+  </div>
+  <div class="navbar-links">
+    <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
+    <button class="nav-link" onclick="smoothTo('ongoing-section')">📊 Ongoing</button>
+    <button class="nav-link" onclick="smoothTo('cal-section')">📅 Calendar</button>
+    <button class="nav-link" onclick="smoothTo('profile-section')">👤 Profile</button>
+    <button class="nav-link" onclick="smoothTo('tbl-section')">📋 Compare</button>
+    <button class="nav-link" onclick="smoothTo('tl-section')">🗓 Roadmap</button>
+    <a class="nav-link" href="vault.html">🗂 Docs</a>
   </div>
 </nav>
 
@@ -244,7 +244,7 @@
 <div class="profile-strip" id="profile-section">
   <div class="pi"><span class="pl">Student</span><span class="pv">Aditya (VIT Chennai)</span></div>
   <div class="pi"><span class="pl">Degree</span><span class="pv">BTech CSE — AI & Robotics</span></div>
-  <div class="pi"><span class="pl">CGPA</span><span class="pv good">9.52 / 10 ⭐</span></div>
+  <div class="pi"><span class="pl">CGPA</span><span class="pv good">9.53 / 10 ⭐</span></div>
   <div class="pi"><span class="pl">German GPA Equiv.</span><span class="pv good">~1.3 (Outstanding)</span></div>
   <div class="pi"><span class="pl">Target</span><span class="pv">Winter 2027 Intake</span></div>
   <div class="pi"><span class="pl">Excluded</span><span class="pv">US · UK · German-taught</span></div>
@@ -1418,7 +1418,7 @@
       <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Dublin</div>
     </div>
 
-    <div class="highlight-box">⭐ #87 globally — excellent 1-year program; your 9.52 CGPA is very competitive here</div>
+    <div class="highlight-box">⭐ #87 globally — excellent 1-year program; your 9.53 CGPA is very competitive here</div>
 
     <div class="detail-grid">
       <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jun 30, 2027</span></div>
@@ -1556,7 +1556,7 @@
       <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Apr 15, 2027 · Dec 15, 2026 (Fellowship)</span></div>
       <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 100 iBT</span></div>
       <div class="di"><span class="dl">📊 GRE</span><span class="dv">Optional (competitive: Quant 167+)</span></div>
-      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">8.0+/10 (9.52 from VIT is very strong)</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">8.0+/10 (9.53 from VIT is very strong)</span></div>
       <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">6-month job-seeking extension</span></div>
       <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">15 hrs/week</span></div>
       <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS not required</span></div>
@@ -2480,7 +2480,7 @@
       <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Mar 31, 2027 (Jul intake)</span></div>
       <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 80 iBT</span></div>
       <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
-      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">GPA 5/7 (~71%) — your 9.52 ≈ 6.5/7 (well above)</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">GPA 5/7 (~71%) — your 9.53 ≈ 6.5/7 (well above)</span></div>
       <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
       <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
       <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
@@ -3189,7 +3189,7 @@
 </div>
 
 <footer>
-  <p>Built for Aditya · VIT Chennai · BTech CSE AI & Robotics · 9.52 CGPA · Winter 2027</p>
+  <p>Built for Aditya · VIT Chennai · BTech CSE AI & Robotics · 9.53 CGPA · Winter 2027</p>
   <p style="margin-top:5px">€1 ≈ ₹90 used for INR estimates · Living costs include rent, food, transport, utilities, misc · Always verify all details directly with universities before applying</p>
 </footer>
 
