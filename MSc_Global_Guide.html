@@ -449,6 +449,7 @@
   </div>
 </nav>
 
+<div class="home-content" id="home-top">
 <div style="max-width:1000px;margin:24px auto;padding:0 20px">
 <div class="profile-strip" id="profile-section">
   <div class="pi"><span class="pl">Student</span><span class="pv">Aditya (VIT Chennai)</span></div>
@@ -475,6 +476,7 @@
   <h3>🔔 Loading upcoming tasks…</h3>
 </div>
 </div>
+</div><!-- /home-top -->
 
 <div class="panel" id="summary-section">
 <div class="summary-section">
@@ -568,6 +570,7 @@
 </div>
 </div></div><!-- /ongoing panel -->
 
+<div class="home-content" id="home-cards">
 <div class="controls">
   <label>Region:</label>
   <select id="fRegion" onchange="go()">
@@ -2982,6 +2985,8 @@
   </div>
 </div></div>
 
+</div><!-- /home-cards -->
+
 <div class="panel" id="cal-section"><div class="cal-section">
   <h2>📅 Application Calendar</h2>
   <p class="cal-note">⚠️ Deadlines shown are best-effort based on university portals — always verify directly with each university before submitting. Tick events as done to track your progress (saved in your browser).</p>
@@ -3522,33 +3527,42 @@ const PANELS = ['summary-section','ongoing-section','cal-section','tbl-section',
 const NAV_IDS = {'summary-section':'nav-summary','ongoing-section':'nav-ongoing','cal-section':'nav-cal','tbl-section':'nav-tbl','tl-section':'nav-tl'};
 
 function navToggle(id) {
+  const homeEls = document.querySelectorAll('.home-content');
+  const allPanels = document.querySelectorAll('.panel');
+
+  // Reset all nav button highlights
+  PANELS.forEach(p => {
+    const nb = document.getElementById(NAV_IDS[p]);
+    if(nb) { nb.style.color=''; nb.style.fontWeight=''; nb.style.background=''; }
+  });
+
   if(id === 'home') {
-    PANELS.forEach(p => {
-      document.getElementById(p)?.classList.remove('open');
-      const nb = document.getElementById(NAV_IDS[p]);
-      if(nb) nb.style.color = '';
-    });
+    // Show home content, hide all panels
+    homeEls.forEach(h => h.style.display = '');
+    allPanels.forEach(p => p.classList.remove('open'));
     window.scrollTo({top:0, behavior:'smooth'});
     return;
   }
+
+  // Hide home content, hide all other panels
+  homeEls.forEach(h => h.style.display = 'none');
+  allPanels.forEach(p => p.classList.remove('open'));
+
+  // Open selected panel
   const panel = document.getElementById(id);
-  if(!panel) return;
-  const isOpen = panel.classList.contains('open');
-  PANELS.forEach(p => {
-    document.getElementById(p)?.classList.remove('open');
-    const nb = document.getElementById(NAV_IDS[p]);
-    if(nb) nb.style.color = '';
-  });
-  if(!isOpen) {
+  if(panel) {
     panel.classList.add('open');
-    const nb = document.getElementById(NAV_IDS[id]);
-    if(nb) nb.style.color = 'var(--accent)';
-    setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'start'}), 60);
-    // Lazy render heavy sections on first open
-    if(id === 'cal-section' && typeof renderCal === 'function') renderCal();
-    if(id === 'ongoing-section' && typeof renderOngoing === 'function') renderOngoing();
-    if(id === 'summary-section' && typeof renderSummary === 'function') renderSummary();
+    window.scrollTo({top: document.querySelector('.navbar')?.offsetHeight || 0, behavior:'smooth'});
   }
+
+  // Highlight active nav button
+  const nb = document.getElementById(NAV_IDS[id]);
+  if(nb) { nb.style.color='var(--accent)'; nb.style.fontWeight='800'; }
+
+  // Lazy render on first open
+  if(id === 'cal-section' && typeof renderCal === 'function') renderCal();
+  if(id === 'ongoing-section' && typeof renderOngoing === 'function') renderOngoing();
+  if(id === 'summary-section' && typeof renderSummary === 'function') renderSummary();
 }
 </script>
 <script src="calendar-data.js"></script>
