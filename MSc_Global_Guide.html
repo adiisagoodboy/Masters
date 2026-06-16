@@ -122,6 +122,39 @@
     .card-top{flex-direction:column;}
   }
 
+  /* ── NAVBAR ── */
+  .navbar{background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(123,142,200,.1);}
+  .navbar-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:52px;gap:0;}
+  .navbar-logo{font-size:.95rem;font-weight:800;color:var(--text);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;}
+  .navbar-links{display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto;}
+  .nav-link{padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;white-space:nowrap;cursor:pointer;border:none;background:none;font-family:inherit;}
+  .nav-link:hover{background:var(--bg2);color:var(--text);}
+  .navbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .navbar-user{font-size:.78rem;color:var(--text2);white-space:nowrap;}
+  .nav-logout{padding:5px 12px;font-size:.78rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;font-weight:600;font-family:inherit;}
+  .nav-logout:hover{border-color:#E74C3C;color:#E74C3C;}
+  @media(max-width:640px){.navbar-logo{display:none;}.nav-link{padding:6px 8px;font-size:.74rem;}.navbar-user{display:none;}}
+
+  /* ── ONGOING APPLICATIONS ── */
+  .ongoing-section{max-width:1000px;margin:0 auto 36px;padding:0 20px;}
+  .ongoing-section>h2{font-size:1.35rem;margin-bottom:6px;}
+  .ongoing-note{font-size:.76rem;color:var(--text2);margin-bottom:14px;}
+  .ongoing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+  .ongoing-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;transition:box-shadow .2s;}
+  .ongoing-card:hover{box-shadow:0 4px 16px rgba(123,142,200,.15);}
+  .ongoing-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px;}
+  .ongoing-name{font-size:.88rem;font-weight:700;color:var(--text);}
+  .ongoing-status{font-size:.72rem;padding:2px 8px;border-radius:8px;font-weight:700;flex-shrink:0;}
+  .status-started{background:rgba(41,128,185,.12);color:#1F6FA8;}
+  .status-progress{background:rgba(243,156,18,.12);color:#B7770D;}
+  .status-done{background:rgba(39,174,96,.12);color:#1E8449;}
+  .ongoing-bar-wrap{background:var(--bg3);border-radius:4px;height:7px;margin-bottom:8px;overflow:hidden;}
+  .ongoing-bar{height:7px;border-radius:4px;transition:width .4s;}
+  .ongoing-meta{font-size:.75rem;color:var(--text2);display:flex;align-items:center;justify-content:space-between;}
+  .ongoing-meta a{color:var(--accent);font-weight:600;text-decoration:none;}
+  .ongoing-empty{color:var(--text2);font-size:.86rem;padding:16px 0;}
+  .ongoing-next-deadline{font-size:.72rem;color:#C84A4A;font-weight:600;}
+
   /* ── CALENDAR ── */
   .cal-section{max-width:1000px;margin:0 auto 50px;padding:0 20px;}
   .cal-section>h2{font-size:1.35rem;margin-bottom:6px;}
@@ -182,13 +215,33 @@
 <body>
 
 <script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html');}</script>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-logo">🎓 MSc Guide</div>
+    <div class="navbar-links">
+      <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
+      <button class="nav-link" onclick="smoothTo('ongoing-section')">📊 Ongoing Applications</button>
+      <button class="nav-link" onclick="smoothTo('cal-section')">📅 Central Calendar</button>
+      <button class="nav-link" onclick="smoothTo('profile-section')">👤 Personal Info</button>
+      <button class="nav-link" onclick="smoothTo('tbl-section')">📋 Compare All</button>
+      <button class="nav-link" onclick="smoothTo('tl-section')">🗓 Roadmap</button>
+    </div>
+    <div class="navbar-right">
+      <span class="navbar-user">Aditya · VIT Chennai · 9.52 CGPA</span>
+      <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div id="home-section"></div>
 <div class="hero">
   <h1>🎓 Aditya's MSc Global Guide</h1>
   <p>Personalized research · 36 programs · 12 countries · All costs in EUR + INR · Winter 2027</p>
 </div>
 
 <div style="max-width:1000px;margin:24px auto;padding:0 20px">
-<div class="profile-strip">
+<div class="profile-strip" id="profile-section">
   <div class="pi"><span class="pl">Student</span><span class="pv">Aditya (VIT Chennai)</span></div>
   <div class="pi"><span class="pl">Degree</span><span class="pv">BTech CSE — AI & Robotics</span></div>
   <div class="pi"><span class="pl">CGPA</span><span class="pv good">9.52 / 10 ⭐</span></div>
@@ -221,6 +274,14 @@
     <li>Apr–May 2027: Australian July 2027 intake applications</li>
   </ul>
 </div>
+</div>
+
+<div class="ongoing-section" id="ongoing-section">
+  <h2>📊 Ongoing Applications</h2>
+  <p class="ongoing-note">Universities where you've started ticking tasks in the Calendar. Progress is saved in your browser.</p>
+  <div class="ongoing-grid" id="ongoing-grid">
+    <p class="ongoing-empty">No applications tracked yet — tick events in the Calendar below to start tracking progress here.</p>
+  </div>
 </div>
 
 <div class="controls">
@@ -2735,7 +2796,7 @@
   </div>
 </div>
 
-<div class="tbl-section">
+<div class="tbl-section" id="tbl-section">
   <h2>📊 Complete Comparison — All-In Cost (Tuition + Living)</h2>
   <div class="tw">
   <table>
@@ -3157,6 +3218,15 @@ function go() {
   document.getElementById('cnt').textContent = vis.length+' programs shown';
 }
 go();
+
+function smoothTo(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function doLogout() {
+  sessionStorage.removeItem('msc-auth');
+  location.replace('login.html');
+}
 </script>
 <script src="calendar-data.js"></script>
 <script>
@@ -3269,6 +3339,59 @@ function renderCal() {
 }
 
 renderCal();
+
+// ── ONGOING APPLICATIONS ──
+function renderOngoing() {
+  if(typeof CAL_EVENTS === 'undefined') return;
+  const uniIds = Object.keys(CAL_NAMES).filter(k => k !== 'preparation');
+  const cards = [];
+
+  uniIds.forEach(uid => {
+    const evts = CAL_EVENTS.filter(e => e.uni === uid);
+    if(!evts.length) return;
+    const done = evts.filter(e => localStorage.getItem('cal:'+e.id) === '1').length;
+    if(done === 0) return;
+    const pct = Math.round(done / evts.length * 100);
+    const nextDeadline = evts
+      .filter(e => e.type === 'deadline' && localStorage.getItem('cal:'+e.id) !== '1')
+      .sort((a,b) => a.date.localeCompare(b.date))[0];
+    cards.push({ uid, done, total: evts.length, pct, nextDeadline });
+  });
+
+  if(!cards.length) {
+    document.getElementById('ongoing-grid').innerHTML = '<p class="ongoing-empty">No applications tracked yet — tick events in the Calendar below to start tracking progress here.</p>';
+    return;
+  }
+
+  cards.sort((a,b) => b.pct - a.pct);
+  document.getElementById('ongoing-grid').innerHTML = cards.map(c => {
+    const color = CAL_COLORS[c.uid] || '#7B8EC8';
+    const name = CAL_NAMES[c.uid] || c.uid;
+    const statusLabel = c.pct === 100 ? '✅ Done' : c.pct >= 50 ? '🔄 In Progress' : '🚀 Started';
+    const statusCls = c.pct === 100 ? 'status-done' : c.pct >= 50 ? 'status-progress' : 'status-started';
+    let deadlineHtml = '';
+    if(c.nextDeadline) {
+      const d = new Date(c.nextDeadline.date+'T12:00:00');
+      const daysLeft = Math.ceil((d - new Date()) / 86400000);
+      const label = daysLeft < 0 ? 'Overdue!' : daysLeft === 0 ? 'Due today!' : `${daysLeft}d left`;
+      const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      deadlineHtml = `<span class="ongoing-next-deadline">⏰ ${dl} (${label})</span>`;
+    }
+    return `<div class="ongoing-card">
+      <div class="ongoing-top">
+        <div class="ongoing-name">${name}</div>
+        <span class="ongoing-status ${statusCls}">${statusLabel}</span>
+      </div>
+      <div class="ongoing-bar-wrap"><div class="ongoing-bar" style="width:${c.pct}%;background:${color}"></div></div>
+      <div class="ongoing-meta">
+        <span>${c.done}/${c.total} tasks · ${c.pct}%</span>
+        ${deadlineHtml || '<span></span>'}
+        <a href="detail.html#${c.uid}">Deep Dive →</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+renderOngoing();
 </script>
 </body>
 </html>

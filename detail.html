@@ -204,12 +204,23 @@ footer{text-align:center;padding:28px;color:var(--text2);font-size:.8rem;border-
 </head>
 <body>
 
-<script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html');}</script>
-<div class="topnav">
-  <a class="back" href="MSc_Global_Guide.html">← Back to Guide</a>
-  <div class="prog-title" id="navTitle">Loading...</div>
-  <span class="qs-pill" id="navQS"></span>
-</div>
+<script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html?next='+encodeURIComponent(location.href));}</script>
+
+<nav class="navbar" style="background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(123,142,200,.1);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:52px;gap:0;">
+    <div style="font-size:.95rem;font-weight:800;color:var(--text);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;">🎓 MSc Guide</div>
+    <div style="display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto;">
+      <a href="MSc_Global_Guide.html" style="padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;">🏠 Home</a>
+      <a href="MSc_Global_Guide.html#ongoing-section" style="padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;">📊 Ongoing</a>
+      <a href="MSc_Global_Guide.html#cal-section" style="padding:6px 13px;font-size:.83rem;font-weight:600;color:var(--text2);text-decoration:none;border-radius:6px;">📅 Calendar</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <span class="qs-pill" id="navQS"></span>
+      <span style="font-size:.88rem;font-weight:700;color:var(--text);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="navTitle">Loading...</span>
+      <button onclick="sessionStorage.removeItem('msc-auth');location.replace('login.html');" style="padding:5px 12px;font-size:.78rem;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;font-weight:600;font-family:inherit;">↩ Logout</button>
+    </div>
+  </div>
+</nav>
 
 <div style="max-width:1000px;margin:0 auto;padding:0 24px;">
 <div class="hero">

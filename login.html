@@ -43,7 +43,9 @@ function tryLogin() {
   const allowed = ['aditya', 'dad', 'appa', 'papa'];
   if (allowed.includes(val)) {
     sessionStorage.setItem('msc-auth', '1');
-    location.replace('MSc_Global_Guide.html');
+    const params = new URLSearchParams(location.search);
+    const next = params.get('next');
+    location.replace(next && next.startsWith('http') ? next : 'MSc_Global_Guide.html');
   } else {
     const inp = document.getElementById('name');
     inp.classList.remove('shake');
