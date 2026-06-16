@@ -1,2 +1,8 @@
 <!DOCTYPE html>
-<meta http-equiv="refresh" content="0; url=MSc_Global_Guide.html">
+<script>
+if (localStorage.getItem('msc-auth') === '1') {
+  location.replace('MSc_Global_Guide.html');
+} else {
+  location.replace('login.html');
+}
+</script>

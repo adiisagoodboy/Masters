@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MSc Guide — Login</title>
+<style>
+  :root{--bg:#F4F6FB;--card:#FFFFFF;--accent:#7B8EC8;--text:#1E2340;--text2:#5A6380;--border:#CDD3EC;--err:#C0392B;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif;}
+  .wrap{width:100%;max-width:400px;padding:20px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 36px;box-shadow:0 8px 40px rgba(123,142,200,.15);}
+  .icon{font-size:2.8rem;text-align:center;margin-bottom:12px;}
+  h1{font-size:1.4rem;font-weight:800;color:var(--text);text-align:center;margin-bottom:4px;}
+  .sub{font-size:.85rem;color:var(--text2);text-align:center;margin-bottom:28px;}
+  label{font-size:.78rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:6px;}
+  input{width:100%;padding:12px 16px;font-size:1rem;border:2px solid var(--border);border-radius:10px;color:var(--text);background:var(--bg);outline:none;transition:border .2s;font-family:inherit;}
+  input:focus{border-color:var(--accent);}
+  input.shake{animation:shake .3s ease;}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  .err{font-size:.8rem;color:var(--err);margin-top:8px;min-height:18px;text-align:center;}
+  button{width:100%;margin-top:20px;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity .2s;font-family:inherit;}
+  button:hover{opacity:.88;}
+  .hint{font-size:.75rem;color:var(--text2);text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="icon">🎓</div>
+    <h1>MSc Global Guide</h1>
+    <p class="sub">Aditya's personal university research — private access only</p>
+    <label for="name">Enter your name to continue</label>
+    <input type="text" id="name" placeholder="Type your name…" autocomplete="off" autocapitalize="none" onkeydown="if(event.key==='Enter')tryLogin()">
+    <div class="err" id="err"></div>
+    <button onclick="tryLogin()">Continue →</button>
+    <p class="hint">Access is restricted to invited viewers only.</p>
+  </div>
+</div>
+<script>
+function tryLogin() {
+  const val = document.getElementById('name').value.trim().toLowerCase();
+  const allowed = ['aditya', 'dad', 'appa', 'papa'];
+  if (allowed.includes(val)) {
+    localStorage.setItem('msc-auth', '1');
+    location.replace('MSc_Global_Guide.html');
+  } else {
+    const inp = document.getElementById('name');
+    inp.classList.remove('shake');
+    void inp.offsetWidth;
+    inp.classList.add('shake');
+    document.getElementById('err').textContent = 'Name not recognised. Try again.';
+  }
+}
+</script>
+</body>
+</html>
