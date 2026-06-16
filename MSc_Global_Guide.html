@@ -6,7 +6,7 @@
 <title>Aditya's MSc Global Guide — Winter 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg-from:#EBF0FF;--bg-mid:#F3ECFF;--bg-to:#E8F5FF;
@@ -18,31 +18,32 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Outfit',system-ui,sans-serif;font-size:16px;line-height:1.7;color:var(--text);overflow-x:hidden;min-height:100vh;
+body{font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.7;color:var(--text);overflow-x:hidden;min-height:100vh;
   background:linear-gradient(145deg,var(--bg-from) 0%,var(--bg-mid) 40%,var(--bg-to) 75%,#FFF0F8 100%);
   background-attachment:fixed;}
 a{color:var(--accent2);text-decoration:none;}
 a:hover{opacity:.8;}
 
-/* BUBBLES */
-.bg-bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-.bbl{position:absolute;border-radius:50%;animation:floatUp linear infinite;}
-@keyframes floatUp{0%{opacity:0;transform:translateY(0) scale(1);}12%{opacity:1;}88%{opacity:.45;}100%{opacity:0;transform:translateY(-110vh) scale(.7);}}
-body>*:not(.bg-bubbles){position:relative;z-index:1;}
+/* CANVAS BACKGROUND */
+#bg-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+body>*:not(#bg-canvas){position:relative;z-index:1;}
 
 /* NAVBAR — DARK ANCHOR */
-.navbar{background:rgba(18,26,72,.93);border-bottom:1.5px solid rgba(255,255,255,.1);position:sticky;top:0;z-index:300;box-shadow:0 4px 32px rgba(0,0,0,.28);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);}
-.navbar-top{max-width:1100px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;}
-.navbar-logo{font-size:1rem;font-weight:800;color:var(--textn);letter-spacing:-.2px;}
-.navbar-logo em{font-style:normal;background:linear-gradient(120deg,#A89FF8,#60D0FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.navbar-date{font-size:.82rem;color:var(--textn2);}
-.navbar-links{max-width:1100px;margin:0 auto;padding:5px 24px 9px;display:flex;align-items:center;gap:3px;}
-.nav-link{padding:8px 13px;font-size:.88rem;font-weight:600;color:var(--textn2);text-decoration:none;border-radius:10px;white-space:nowrap;cursor:pointer;border:none;background:none;font-family:inherit;flex:1;text-align:center;transition:all .18s;letter-spacing:.05px;}
-.nav-link:hover{background:rgba(255,255,255,.1);color:var(--textn);}
-.tracked-count{font-size:.72rem;background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-weight:700;margin-left:4px;display:none;}
+/* ── NAVBAR — SKYSCANNER STYLE ── */
+.navbar{background:#05204A;position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(0,0,0,.35);}
+.navbar-top{max-width:1200px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.navbar-brand{display:flex;flex-direction:column;gap:2px;}
+.navbar-logo{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:-.3px;display:flex;align-items:center;gap:8px;}
+.navbar-logo em{font-style:normal;color:#69A9EC;font-weight:800;}
+.navbar-tagline{font-size:.72rem;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:.1px;}
+.navbar-links{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:stretch;border-top:1px solid rgba(255,255,255,.08);overflow-x:auto;}
+.nav-link{padding:13px 0;font-size:.84rem;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;border:none;background:none;cursor:pointer;font-family:inherit;flex:1;text-align:center;white-space:nowrap;transition:all .18s;border-bottom:3px solid transparent;letter-spacing:.05px;position:relative;}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.06);}
+.nav-link.nav-active{color:#fff;font-weight:700;border-bottom-color:#69A9EC;}
+.tracked-count{font-size:.7rem;background:#69A9EC;color:#05204A;border-radius:10px;padding:1px 7px;font-weight:800;margin-left:4px;display:none;}
 .tracked-count.has-items{display:inline;}
-.nav-logout{padding:6px 14px;font-size:.78rem;background:rgba(255,80,80,.1);border:1.5px solid rgba(255,100,100,.25);border-radius:9px;color:#FF8080;cursor:pointer;font-weight:700;font-family:inherit;transition:all .2s;white-space:nowrap;}
-.nav-logout:hover{background:rgba(255,80,80,.18);border-color:rgba(255,100,100,.5);}
+.nav-logout{padding:7px 16px;font-size:.78rem;background:transparent;border:1.5px solid rgba(255,255,255,.25);border-radius:8px;color:rgba(255,255,255,.7);cursor:pointer;font-weight:600;font-family:inherit;transition:all .2s;white-space:nowrap;}
+.nav-logout:hover{border-color:rgba(255,255,255,.7);color:#fff;}
 
 /* HERO — GLASS ON DARK */
 .hero{background:rgba(14,22,68,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:54px 24px 38px;text-align:center;border-bottom:1.5px solid rgba(255,255,255,.1);position:relative;overflow:hidden;}
@@ -306,8 +307,8 @@ footer{text-align:center;padding:28px;color:var(--textn2);font-size:.84rem;borde
 @media(max-width:768px){
   .hero h1{font-size:1.8rem;}
   .hero p{font-size:.92rem;}
-  .navbar-links{padding:4px 10px 8px;gap:1px;}
-  .nav-link{font-size:.74rem;padding:7px 6px;}
+  .navbar-links{overflow-x:auto;}
+  .nav-link{font-size:.72rem;padding:10px 4px;}
   .profile-strip{gap:10px;padding:14px 16px;}
   .sn{font-size:1.65rem;}
   .detail-grid{grid-template-columns:1fr;}
@@ -341,30 +342,99 @@ footer{text-align:center;padding:28px;color:var(--textn2);font-size:.84rem;borde
 
 <script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html');}</script>
 
-<div class="bg-bubbles" id="bg-bubbles"></div>
+<canvas id="bg-canvas"></canvas>
 <script>
 (function(){
-  const w=document.getElementById('bg-bubbles');
-  const cfg=[
-    {s:200,x:5, y:88,d:20,del:0, r:'91,82,208'},
-    {s:100,x:22,y:74,d:26,del:3, r:'52,152,219'},
-    {s:240,x:50,y:93,d:24,del:7, r:'139,92,246'},
-    {s:70, x:68,y:80,d:15,del:1, r:'91,82,208'},
-    {s:160,x:82,y:91,d:30,del:5, r:'52,152,219'},
-    {s:120,x:35,y:96,d:22,del:9, r:'139,92,246'},
-    {s:55, x:60,y:85,d:13,del:4, r:'91,82,208'},
-    {s:190,x:12,y:95,d:32,del:11,r:'52,152,219'},
-    {s:85, x:90,y:70,d:17,del:2, r:'139,92,246'},
-    {s:135,x:44,y:83,d:28,del:8, r:'91,82,208'},
-    {s:50, x:76,y:97,d:14,del:6, r:'52,152,219'},
-    {s:170,x:3, y:65,d:34,del:12,r:'139,92,246'},
-  ];
-  cfg.forEach(b=>{
-    const el=document.createElement('div');
-    el.className='bbl';
-    el.style.cssText=`width:${b.s}px;height:${b.s}px;left:${b.x}%;top:${b.y}%;background:radial-gradient(circle,rgba(${b.r},.1) 0%,transparent 70%);animation-duration:${b.d}s;animation-delay:-${b.del}s;`;
-    w.appendChild(el);
-  });
+  const cv=document.getElementById('bg-canvas');
+  const ctx=cv.getContext('2d');
+  let W,H;
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  resize(); window.addEventListener('resize',resize);
+
+  const LABELS=['#7 ETH','#17 EPFL','#49 Delft','#74 KTH','#99 PoliMi',
+    '#8 NUS','#15 NTU','#73 KU Leuven','36 Programs','12 Countries',
+    'Dec 1','Jan 15','Mar 1','May 15','₹18L','€1.1k','€9.2k',
+    'GRE 164+','IELTS 7.0','APS Cert','Winter 2027','AI & ML',
+    'Robotics','Autonomous','DAAD Grant'];
+
+  function rnd(a,b){return a+Math.random()*(b-a);}
+
+  // Constellation dots
+  const dots=Array.from({length:52},()=>({
+    x:rnd(0,window.innerWidth),y:rnd(0,window.innerHeight),
+    vx:rnd(-.28,.28),vy:rnd(-.28,.28),
+    r:rnd(1.2,2.6),o:rnd(.1,.22)
+  }));
+
+  // Floating academic labels
+  const labels=LABELS.map((t,i)=>({
+    x:rnd(0,window.innerWidth),y:rnd(0,window.innerHeight),
+    vx:rnd(-.16,.16),vy:rnd(-.14,.14),
+    text:t,sz:rnd(9.5,12.5),o:rnd(.09,.17)
+  }));
+
+  // Soft radial bubbles
+  const bubbles=Array.from({length:7},()=>({
+    x:rnd(0,window.innerWidth),y:rnd(0,window.innerHeight),
+    vx:rnd(-.12,.12),vy:rnd(-.1,.1),
+    r:rnd(55,170),o:rnd(.03,.065)
+  }));
+
+  const MAX=128, C='91,82,208';
+
+  function wrap(p,pad){
+    if(p.x<-pad)p.x=W+pad; if(p.x>W+pad)p.x=-pad;
+    if(p.y<-pad)p.y=H+pad; if(p.y>H+pad)p.y=-pad;
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+
+    // Bubbles
+    bubbles.forEach(b=>{
+      b.x+=b.vx; b.y+=b.vy; wrap(b,200);
+      const g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+      g.addColorStop(0,`rgba(${C},${b.o})`);
+      g.addColorStop(1,`rgba(${C},0)`);
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fillStyle=g; ctx.fill();
+    });
+
+    // Move dots
+    dots.forEach(d=>{d.x+=d.vx;d.y+=d.vy;wrap(d,10);});
+
+    // Lines
+    for(let i=0;i<dots.length;i++){
+      for(let j=i+1;j<dots.length;j++){
+        const dx=dots[i].x-dots[j].x,dy=dots[i].y-dots[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<MAX){
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x,dots[i].y);
+          ctx.lineTo(dots[j].x,dots[j].y);
+          ctx.strokeStyle=`rgba(${C},${(1-d/MAX)*0.13})`;
+          ctx.lineWidth=.65; ctx.stroke();
+        }
+      }
+    }
+
+    // Dots
+    dots.forEach(d=>{
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${C},${d.o})`; ctx.fill();
+    });
+
+    // Floating labels
+    labels.forEach(l=>{
+      l.x+=l.vx; l.y+=l.vy; wrap(l,60);
+      ctx.font=`400 ${l.sz}px 'DM Sans',system-ui,sans-serif`;
+      ctx.fillStyle=`rgba(${C},${l.o})`;
+      ctx.fillText(l.text,l.x,l.y);
+    });
+
+    requestAnimationFrame(frame);
+  }
+  frame();
 })();
 </script>
 
@@ -379,7 +449,10 @@ footer{text-align:center;padding:28px;color:var(--textn2);font-size:.84rem;borde
 
 <nav class="navbar">
   <div class="navbar-top">
-    <div class="navbar-logo">Aditya · VIT Chennai · 9.53 CGPA &nbsp;·&nbsp; <span id="nav-date"></span></div>
+    <div class="navbar-brand">
+      <div class="navbar-logo">🎓 <em>MSc Guide</em></div>
+      <div class="navbar-tagline">Aditya &nbsp;·&nbsp; VIT Chennai &nbsp;·&nbsp; 9.53 CGPA &nbsp;·&nbsp; <span id="nav-date"></span></div>
+    </div>
     <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
   </div>
   <div class="navbar-links">
@@ -3566,7 +3639,7 @@ function navToggle(id) {
   // Reset all nav button highlights
   PANELS.forEach(p => {
     const nb = document.getElementById(NAV_IDS[p]);
-    if(nb) { nb.style.color=''; nb.style.fontWeight=''; nb.style.background=''; }
+    if(nb) { nb.classList.remove('nav-active'); nb.style.color=''; nb.style.fontWeight=''; nb.style.background=''; }
   });
 
   if(id === 'home') {
@@ -3590,7 +3663,7 @@ function navToggle(id) {
 
   // Highlight active nav button
   const nb = document.getElementById(NAV_IDS[id]);
-  if(nb) { nb.style.color='var(--accent)'; nb.style.fontWeight='800'; }
+  if(nb) { nb.classList.add('nav-active'); }
 
   // Render section — sync tracking state first
   if(id === 'cal-section' && typeof renderCal === 'function') {
