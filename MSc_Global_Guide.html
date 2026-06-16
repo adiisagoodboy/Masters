@@ -134,6 +134,71 @@
   .nav-logout:hover{border-color:#E74C3C;color:#E74C3C;}
   @media(max-width:640px){.nav-link{font-size:.68rem;padding:4px 5px;}}
 
+  /* ── HERO UPGRADE ── */
+  .hero{background:linear-gradient(135deg,#E8ECF8 0%,#EEF1FF 40%,#E4E8F8 100%);padding:48px 40px 32px;text-align:center;border-bottom:2px solid var(--border);position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(123,142,200,.08);}
+  .hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:rgba(155,126,200,.06);}
+  .hero h1{font-size:2.6rem;font-weight:900;background:linear-gradient(110deg,#5A72B8,#8E6AC8,#5A72B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;letter-spacing:-.5px;}
+  .hero p{color:var(--text2);font-size:.95rem;letter-spacing:.2px;}
+
+  /* ── STAT CARDS UPGRADE ── */
+  .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:20px auto;max-width:1000px;padding:0 20px;}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 26px;text-align:center;box-shadow:0 2px 8px rgba(123,142,200,.08);transition:transform .2s,box-shadow .2s;}
+  .stat:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(123,142,200,.15);}
+  .sn{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--accent),#9B7EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .sl{font-size:.75rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+
+  /* ── PROFILE STRIP UPGRADE ── */
+  .profile-strip{background:linear-gradient(135deg,var(--card),#EEF1FF);border:1px solid var(--border);border-radius:16px;margin:24px auto;max-width:1000px;padding:20px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;box-shadow:0 2px 12px rgba(123,142,200,.1);}
+  .pi .pl{font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+  .pi .pv{font-size:.98rem;font-weight:700;}
+  .pi .pv.good{color:#1E8449;}
+
+  /* ── SUMMARY SECTION ── */
+  .summary-section{max-width:1000px;margin:0 auto 36px;padding:0 20px;}
+  .summary-section>h2{font-size:1.35rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .countdown-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
+  .cd-card{border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;color:#fff;}
+  .cd-card::after{content:'';position:absolute;top:-25px;right:-25px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.12);}
+  .cd-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.85;margin-bottom:5px;}
+  .cd-title{font-size:.85rem;font-weight:700;margin-bottom:10px;line-height:1.4;opacity:.95;}
+  .cd-days-wrap{display:flex;align-items:baseline;gap:5px;}
+  .cd-days{font-size:2.6rem;font-weight:900;line-height:1;}
+  .cd-unit{font-size:.8rem;font-weight:700;opacity:.8;}
+  .cd-date{font-size:.72rem;opacity:.75;margin-top:5px;}
+  .cd-done{font-size:.85rem;font-weight:700;opacity:.9;margin-top:4px;}
+
+  .strategy-board{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 2px 8px rgba(123,142,200,.07);}
+  .strategy-board>h3{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+  .strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .strategy-col>h4{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding:5px 10px;border-radius:7px;text-align:center;}
+  .reach-h{background:rgba(192,57,43,.1);color:#C0392B;}
+  .target-h{background:rgba(31,111,168,.1);color:#1F6FA8;}
+  .safety-h{background:rgba(30,132,73,.1);color:#1E8449;}
+  .s-item{font-size:.79rem;padding:5px 8px;border-radius:7px;margin-bottom:5px;display:flex;align-items:center;gap:5px;cursor:pointer;transition:background .15s;}
+  .s-item:hover{background:var(--bg2);}
+  .s-item a{text-decoration:none;color:var(--text);font-weight:600;flex:1;}
+  .s-item .sq{font-size:.67rem;color:var(--text2);}
+
+  .picks-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px;}
+  .pick-card{background:var(--card);border:1px solid var(--border);border-top:3px solid;border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(123,142,200,.07);}
+  .pick-card>h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;color:var(--text2);}
+  .pick-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);}
+  .pick-item:last-child{border-bottom:none;}
+  .pick-num{font-size:.7rem;font-weight:800;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;margin-top:1px;}
+  .pick-info .pname{font-size:.84rem;font-weight:700;color:var(--text);}
+  .pick-info .pwhy{font-size:.73rem;color:var(--text2);margin-top:1px;}
+
+  .cost-bars-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(123,142,200,.07);}
+  .cost-bars-wrap>h3{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:14px;}
+  .cb-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+  .cb-label{width:130px;font-size:.77rem;color:var(--text);flex-shrink:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .cb-track{flex:1;background:var(--bg3);border-radius:5px;height:20px;overflow:hidden;}
+  .cb-fill{height:20px;border-radius:5px;display:flex;align-items:center;padding-left:8px;}
+  .cb-fill span{font-size:.67rem;font-weight:700;color:#fff;white-space:nowrap;}
+  .cb-amt{width:56px;font-size:.72rem;color:var(--text2);text-align:right;flex-shrink:0;}
+  @media(max-width:680px){.countdown-row,.strategy-grid,.picks-row{grid-template-columns:1fr;}}
+
   /* ── ONGOING APPLICATIONS ── */
   .ongoing-section{max-width:1000px;margin:0 auto 36px;padding:0 20px;}
   .ongoing-section>h2{font-size:1.35rem;margin-bottom:6px;}
@@ -228,7 +293,8 @@
   </div>
   <div class="navbar-links">
     <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
-    <button class="nav-link" onclick="smoothTo('ongoing-section')">📊 Ongoing</button>
+    <button class="nav-link" onclick="smoothTo('summary-section')">📊 Summary</button>
+    <button class="nav-link" onclick="smoothTo('ongoing-section')">🔄 Ongoing</button>
     <button class="nav-link" onclick="smoothTo('cal-section')">📅 Calendar</button>
     <button class="nav-link" onclick="smoothTo('profile-section')">👤 Profile</button>
     <button class="nav-link" onclick="smoothTo('tbl-section')">📋 Compare</button>
@@ -262,6 +328,85 @@
 <div class="alert" id="alert-box">
   <h3>🔔 Loading upcoming tasks…</h3>
 </div>
+</div>
+
+<div class="summary-section" id="summary-section">
+  <h2>📊 Summary &amp; Strategy</h2>
+
+  <!-- Countdown to next 3 deadlines -->
+  <div class="countdown-row" id="countdown-row">
+    <div class="cd-card" style="background:linear-gradient(135deg,#C0392B,#E74C3C)"><div class="cd-label">Loading…</div></div>
+    <div class="cd-card" style="background:linear-gradient(135deg,#1F6FA8,#2980B9)"><div class="cd-label">Loading…</div></div>
+    <div class="cd-card" style="background:linear-gradient(135deg,#1E8449,#27AE60)"><div class="cd-label">Loading…</div></div>
+  </div>
+
+  <!-- Application Strategy -->
+  <div class="strategy-board">
+    <h3>🎯 Application Strategy — Based on Your Profile (CGPA 9.53 · BTech CSE AI &amp; Robotics · VIT)</h3>
+    <div class="strategy-grid">
+      <div class="strategy-col">
+        <h4 class="reach-h">🎯 Reach (Aim High)</h4>
+        <div class="s-item"><a href="detail.html#ch-eth-robotics">ETH Zurich</a><span class="sq">QS #7</span></div>
+        <div class="s-item"><a href="detail.html#ch-epfl-robotics">EPFL</a><span class="sq">QS #17</span></div>
+        <div class="s-item"><a href="detail.html#sg-nus-ai">NUS Singapore</a><span class="sq">QS #8</span></div>
+        <div class="s-item"><a href="detail.html#sg-ntu-msai">NTU Singapore</a><span class="sq">QS #15</span></div>
+        <div class="s-item"><a href="detail.html#nl-tudelft-robotics">TU Delft</a><span class="sq">QS #49</span></div>
+        <div class="s-item"><a href="detail.html#nl-uva-ai">UvA Amsterdam</a><span class="sq">QS #55</span></div>
+      </div>
+      <div class="strategy-col">
+        <h4 class="target-h">✅ Target (Strong Match)</h4>
+        <div class="s-item"><a href="detail.html#be-kuleuven-ai">KU Leuven</a><span class="sq">QS #73 · 1yr</span></div>
+        <div class="s-item"><a href="detail.html#se-kth-ml">KTH Sweden</a><span class="sq">QS #74</span></div>
+        <div class="s-item"><a href="detail.html#dk-dtu-auto">DTU Denmark</a><span class="sq">QS #109 · 3yr visa</span></div>
+        <div class="s-item"><a href="detail.html#fi-aalto-ml">Aalto Finland</a><span class="sq">QS #115 · 2yr visa</span></div>
+        <div class="s-item"><a href="detail.html#it-polimi-cse">PoliMi Milan</a><span class="sq">QS #98</span></div>
+        <div class="s-item"><a href="detail.html#se-chalmers-dsai">Chalmers</a><span class="sq">QS #139</span></div>
+      </div>
+      <div class="strategy-col">
+        <h4 class="safety-h">🛡 Safety (High Confidence)</h4>
+        <div class="s-item"><a href="detail.html#de-hamburg-ias">Hamburg IAS</a><span class="sq">Free tuition · Robotics</span></div>
+        <div class="s-item"><a href="detail.html#de-bonn-ai">Bonn AI</a><span class="sq">Dedicated AI</span></div>
+        <div class="s-item"><a href="detail.html#at-tuwien-ds">TU Wien</a><span class="sq">QS #91 CS</span></div>
+        <div class="s-item"><a href="detail.html#ie-dcu-ai">DCU Ireland</a><span class="sq">24mo work visa</span></div>
+        <div class="s-item"><a href="detail.html#de-saarland-dsai">Saarland DSAI</a><span class="sq">DFKI campus</span></div>
+        <div class="s-item"><a href="detail.html#au-uq-cs">Australia (any)</a><span class="sq">Rolling · No GRE</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Picks by Category -->
+  <div class="picks-row">
+    <div class="pick-card" style="border-top-color:#27AE60">
+      <h4>💰 Best Budget (Under ₹25L all-in)</h4>
+      <div class="pick-item"><div class="pick-num" style="background:#27AE60">1</div><div class="pick-info"><div class="pname">Saarland DSAI</div><div class="pwhy">₹18.3L · DFKI campus · GATE accepted</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#27AE60">2</div><div class="pick-info"><div class="pname">Bonn AI</div><div class="pwhy">₹19.4L · Dedicated AI MSc · No GRE</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#27AE60">3</div><div class="pick-info"><div class="pname">KU Leuven</div><div class="pwhy">₹19.6L · QS #73 · 1-year program</div></div></div>
+    </div>
+    <div class="pick-card" style="border-top-color:#8E3A59">
+      <h4>🏆 Best Prestige (Top QS Rank)</h4>
+      <div class="pick-item"><div class="pick-num" style="background:#8E3A59">1</div><div class="pick-info"><div class="pname">ETH Zurich</div><div class="pwhy">QS #7 globally · ₹57L · GRE 168+</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#8E3A59">2</div><div class="pick-info"><div class="pname">EPFL</div><div class="pwhy">QS #17 · ₹50L · Fellowship available</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#8E3A59">3</div><div class="pick-info"><div class="pname">NUS Singapore</div><div class="pwhy">QS #8 · GATE accepted · 1-1.5 yr</div></div></div>
+    </div>
+    <div class="pick-card" style="border-top-color:#1565C0">
+      <h4>🌏 Best Post-Study Work Rights</h4>
+      <div class="pick-item"><div class="pick-num" style="background:#1565C0">1</div><div class="pick-info"><div class="pname">DTU Denmark</div><div class="pwhy">3-year job search visa · QS #109</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#1565C0">2</div><div class="pick-info"><div class="pname">Aalto Finland</div><div class="pwhy">2-year permit · QS #115</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#1565C0">3</div><div class="pick-info"><div class="pname">Ireland (TCD/UCD/DCU)</div><div class="pwhy">2-year Stamp 1G · 3 good options</div></div></div>
+    </div>
+    <div class="pick-card" style="border-top-color:#C84A8E">
+      <h4>🤖 Best AI/Robotics Profile Fit</h4>
+      <div class="pick-item"><div class="pick-num" style="background:#C84A8E">1</div><div class="pick-info"><div class="pname">Hamburg IAS</div><div class="pwhy">Robotics+AI integrated · Free tuition</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#C84A8E">2</div><div class="pick-info"><div class="pname">NTU Singapore</div><div class="pwhy">QS #5 AI by subject · GRE optional</div></div></div>
+      <div class="pick-item"><div class="pick-num" style="background:#C84A8E">3</div><div class="pick-info"><div class="pname">ETH Zurich</div><div class="pwhy">Top robotics program globally</div></div></div>
+    </div>
+  </div>
+
+  <!-- Cost comparison bars (top 10 by value) -->
+  <div class="cost-bars-wrap">
+    <h3>💶 Cost Comparison — True All-In (Tuition + Living)</h3>
+    <div id="cost-bars-list"></div>
+  </div>
 </div>
 
 <div class="ongoing-section" id="ongoing-section">
@@ -3380,6 +3525,73 @@ function renderOngoing() {
   }).join('');
 }
 renderOngoing();
+
+// ── SUMMARY SECTION ──
+function renderSummary() {
+  if(typeof CAL_EVENTS === 'undefined') return;
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0,10);
+
+  // Countdown cards — next 3 undone deadlines
+  const upcoming = CAL_EVENTS
+    .filter(e => e.type === 'deadline' && e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
+    .sort((a,b) => a.date.localeCompare(b.date))
+    .slice(0, 3);
+
+  const cdColors = [
+    'linear-gradient(135deg,#C0392B,#E74C3C)',
+    'linear-gradient(135deg,#1F6FA8,#2980B9)',
+    'linear-gradient(135deg,#7B4AC8,#9B6AC8)'
+  ];
+  const cdRow = document.getElementById('countdown-row');
+  if(cdRow) {
+    cdRow.innerHTML = upcoming.map((e, i) => {
+      const d = new Date(e.date+'T12:00:00');
+      const days = Math.ceil((d - now) / 86400000);
+      const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      const name = CAL_NAMES[e.uni] || 'General';
+      const isDoneFlag = localStorage.getItem('cal:'+e.id) === '1';
+      return `<div class="cd-card" style="background:${cdColors[i]}">
+        <div class="cd-label">${name}</div>
+        <div class="cd-title">${e.title.replace(/\s*—\s*.*DEADLINE.*/i,'').replace(/APPLICATION\s*/i,'')}</div>
+        ${isDoneFlag
+          ? '<div class="cd-done">✓ Done</div>'
+          : `<div class="cd-days-wrap"><div class="cd-days">${days}</div><div class="cd-unit">days left</div></div>`}
+        <div class="cd-date">📅 ${dl}</div>
+      </div>`;
+    }).join('') || '<div style="color:var(--text2);padding:20px;grid-column:1/-1">No upcoming deadlines — all done! 🎉</div>';
+  }
+
+  // Cost bars — show cheapest 12 programs
+  const cards2 = Array.from(document.querySelectorAll('.card')).map(c => ({
+    label: c.querySelector('.prog')?.textContent || '',
+    uni: c.querySelector('.univ')?.textContent || '',
+    allin: parseInt(c.dataset.allin) || 0,
+    qs: parseInt(c.dataset.qs) || 999,
+    region: c.dataset.region || ''
+  })).filter(c => c.allin > 0).sort((a,b) => a.allin - b.allin).slice(0, 12);
+
+  const maxCost = Math.max(...cards2.map(c => c.allin));
+  const regionColors = {
+    germany:'#4A7EC8', austria:'#E05A4E', switzerland:'#8E3A59',
+    other_europe:'#2E8B57', ireland:'#2E9B5F', australia:'#7B4AC8', singapore:'#C84A8E'
+  };
+  const costList = document.getElementById('cost-bars-list');
+  if(costList) {
+    costList.innerHTML = cards2.map(c => {
+      const pct = Math.round(c.allin / maxCost * 100);
+      const inrL = (c.allin * 90 / 100000).toFixed(1);
+      const col = regionColors[c.region] || '#7B8EC8';
+      const shortLabel = c.uni.replace(/🇩🇪|🇦🇹|🇨🇭|🌍|🇮🇪|🇦🇺|🇸🇬/g,'').trim().replace('University','Univ.').substring(0,18);
+      return `<div class="cb-row">
+        <div class="cb-label" title="${c.uni} — ${c.label}">${shortLabel}</div>
+        <div class="cb-track"><div class="cb-fill" style="width:${pct}%;background:${col}"><span>€${(c.allin/1000).toFixed(0)}k</span></div></div>
+        <div class="cb-amt">₹${inrL}L</div>
+      </div>`;
+    }).join('');
+  }
+}
+renderSummary();
 
 // ── DYNAMIC DATES ──
 (function() {
