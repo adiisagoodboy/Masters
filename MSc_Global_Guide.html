@@ -3644,8 +3644,13 @@ function navToggle(id) {
   const nb = document.getElementById(NAV_IDS[id]);
   if(nb) { nb.style.color='var(--accent)'; nb.style.fontWeight='800'; }
 
-  // Lazy render on first open
-  if(id === 'cal-section' && typeof renderCal === 'function') renderCal();
+  // Render section — sync tracking state first
+  if(id === 'cal-section' && typeof renderCal === 'function') {
+    document.querySelectorAll('#cal-sidebar input[type=checkbox]').forEach(cb => {
+      cb.checked = cb.value === 'preparation' || isTracked(cb.value);
+    });
+    renderCal();
+  }
   if(id === 'ongoing-section' && typeof renderOngoing === 'function') renderOngoing();
   if(id === 'summary-section' && typeof renderSummary === 'function') renderSummary();
 }
@@ -3831,6 +3836,7 @@ function renderSummary() {
   // Countdown cards — next 3 undone deadlines
   const upcoming = CAL_EVENTS
     .filter(e => e.type === 'deadline' && e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
+    .filter(e => e.uni === 'preparation' || isTracked(e.uni))
     .sort((a,b) => a.date.localeCompare(b.date))
     .slice(0, 3);
 

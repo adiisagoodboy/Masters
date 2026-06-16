@@ -281,9 +281,17 @@ function init(){
   const id = location.hash.replace('#','') || 'de-saarland-dsai';
   currentId = id;
   currentProg = PROGRAMS[id];
-  if(!currentProg){document.body.innerHTML='<div style="padding:40px;color:#7B8EC8">Program not found: '+id+'</div>';return;}
+  if(!currentProg){
+    document.body.innerHTML='<div style="padding:60px 24px;text-align:center;background:#F4F6FB;min-height:100vh;font-family:Segoe UI,sans-serif"><div style="font-size:3rem;margin-bottom:16px">😕</div><h2 style="color:#1A1F38;margin-bottom:8px">Program not found</h2><p style="color:#5A6380;margin-bottom:24px">Could not load program: <code>'+id+'</code></p><a href="MSc_Global_Guide.html" style="background:#7B8EC8;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">← Back to Guide</a></div>';
+    return;
+  }
   currentCity = CITIES[currentProg.city];
-  renderAll();
+  try {
+    renderAll();
+  } catch(e) {
+    console.error('renderAll error:', e);
+    document.querySelector('.content').innerHTML = '<div style="padding:40px;text-align:center"><h3 style="color:#C0392B;margin-bottom:8px">⚠️ Render error</h3><p style="color:#666;font-size:.85rem">'+e.message+'</p><a href="MSc_Global_Guide.html">← Back</a></div>';
+  }
 }
 
 function renderAll(){
@@ -716,6 +724,13 @@ function showTab(name){
 }
 
 window.addEventListener('hashchange', init);
+window.onerror = function(msg, src, line, col, err) {
+  const d = document.createElement('div');
+  d.style = 'position:fixed;bottom:16px;left:16px;right:16px;background:#fff0f0;border:2px solid #e74c3c;padding:14px 16px;border-radius:10px;z-index:9999;font-size:.8rem;font-family:monospace;color:#c0392b;';
+  d.innerHTML = '<strong>JS Error (line '+line+'):</strong> '+msg;
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(), 8000);
+};
 init();
 </script>
 <script src="calendar-data.js"></script>
