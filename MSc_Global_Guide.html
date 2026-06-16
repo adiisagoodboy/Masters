@@ -215,13 +215,16 @@
 
 <script>if(sessionStorage.getItem('msc-auth')!=='1'){location.replace('login.html');}</script>
 
+<div id="home-section"></div>
+<div class="hero">
+  <h1>🎓 Aditya's MSc Global Guide</h1>
+  <p>Personalized research · 36 programs · 12 countries · All costs in EUR + INR · Winter 2027</p>
+</div>
+
 <nav class="navbar">
   <div class="navbar-top">
-    <div class="navbar-logo">🎓 Aditya's MSc Global Guide</div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span class="navbar-user">Aditya · VIT Chennai · 9.53 CGPA</span>
-      <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
-    </div>
+    <div class="navbar-logo">Aditya · VIT Chennai · 9.53 CGPA &nbsp;·&nbsp; <span id="nav-date"></span></div>
+    <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
   </div>
   <div class="navbar-links">
     <button class="nav-link" onclick="smoothTo('home-section')">🏠 Home</button>
@@ -233,12 +236,6 @@
     <a class="nav-link" href="vault.html">🗂 Docs</a>
   </div>
 </nav>
-
-<div id="home-section"></div>
-<div class="hero">
-  <h1>🎓 Aditya's MSc Global Guide</h1>
-  <p>Personalized research · 36 programs · 12 countries · All costs in EUR + INR · Winter 2027</p>
-</div>
 
 <div style="max-width:1000px;margin:24px auto;padding:0 20px">
 <div class="profile-strip" id="profile-section">
@@ -262,17 +259,8 @@
 </div>
 
 <div style="max-width:1000px;margin:0 auto;padding:0 20px">
-<div class="alert">
-  <h3>🔔 Key Action Items — Start Now (May 2026)</h3>
-  <ul>
-    <li>Jun–Aug 2026: GRE prep & attempt (needed for RWTH Aachen, ETH Zurich, Saarland, Aalto, NUS)</li>
-    <li>Jun–Sep 2026: Apply for APS Certificate at German Embassy in India (3–5 months processing, mandatory for Germany)</li>
-    <li>Jun–Oct 2026: IELTS/TOEFL preparation and exam</li>
-    <li>Dec 1, 2026: ETH Zurich deadline · Dec 15, 2026: EPFL Excellence Fellowship (CHF 10k/sem + full tuition!)</li>
-    <li>Jan 2027: KTH, Chalmers, DTU, Aalto, UvA, NUS — have all documents ready before Jan 1</li>
-    <li>Feb–May 2027: Main European application window for remaining universities</li>
-    <li>Apr–May 2027: Australian July 2027 intake applications</li>
-  </ul>
+<div class="alert" id="alert-box">
+  <h3>🔔 Loading upcoming tasks…</h3>
 </div>
 </div>
 
@@ -3173,7 +3161,7 @@
 <div class="tl-section">
   <h2>🗓️ Application Roadmap — Winter 2027</h2>
   <div class="tl">
-    <div class="tli"><div class="dot"></div><div class="tdate">June 2026 — NOW</div><div class="ttitle">Start Immediately</div><div class="tbody">Apply for APS Certificate at German Embassy India (~3–5 months, €165). Register for GRE — take free diagnostic on ETS website. Begin IELTS prep. Get certified VIT transcripts. Start shortlisting universities.</div></div>
+    <div class="tli"><div class="dot" style="background:#E67E22"></div><div class="tdate" id="tl-now-date">— NOW</div><div class="ttitle">Start Immediately</div><div class="tbody">Apply for APS Certificate at German Embassy India (~3–5 months, €165). Register for GRE — take free diagnostic on ETS website. Begin IELTS prep. Get certified VIT transcripts. Start shortlisting universities.</div></div>
     <div class="tli"><div class="dot"></div><div class="tdate">Jul – Aug 2026</div><div class="ttitle">GRE & IELTS Preparation</div><div class="tbody">4–6 weeks focused GRE prep (target Quant 164+, AW 4.0+). IELTS coaching. Research specific programs and note scholarship deadlines. Get VIT module handbook for German university curricular analysis.</div></div>
     <div class="tli"><div class="dot"></div><div class="tdate">September 2026</div><div class="ttitle">GRE & IELTS Exams</div><div class="tbody">Attempt GRE (first attempt — leaves retake window in Nov if needed). Attempt IELTS/TOEFL. APS certificate should be arriving around this time — follow up with embassy if delayed.</div></div>
     <div class="tli"><div class="dot"></div><div class="tdate">Oct – Nov 2026</div><div class="ttitle">GRE Retake + Application Drafting</div><div class="tbody">GRE retake if needed. Draft Statement of Purpose / Motivation Letter. Start Curricular Analysis forms (German universities). Research all scholarship deadlines — many close in December. Uni-assist VPD registration (Germany).</div></div>
@@ -3392,6 +3380,46 @@ function renderOngoing() {
   }).join('');
 }
 renderOngoing();
+
+// ── DYNAMIC DATES ──
+(function() {
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0,10);
+
+  // Navbar date
+  const navDate = document.getElementById('nav-date');
+  if(navDate) navDate.textContent = now.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+
+  // Timeline "NOW" label
+  const tlNow = document.getElementById('tl-now-date');
+  if(tlNow) tlNow.textContent = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'})+' — NOW';
+
+  // Dynamic alert box — show next 6 undone upcoming tasks sorted by date
+  if(typeof CAL_EVENTS !== 'undefined') {
+    const upcoming = CAL_EVENTS
+      .filter(e => e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
+      .sort((a,b) => a.date.localeCompare(b.date))
+      .slice(0, 6);
+
+    const monthLabel = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+    let html = `<h3>🔔 Upcoming Tasks — as of ${monthLabel}</h3><ul>`;
+
+    if(!upcoming.length) {
+      html = `<h3>🎉 All tasks complete as of ${monthLabel}!</h3>`;
+    } else {
+      upcoming.forEach(e => {
+        const d = new Date(e.date+'T12:00:00');
+        const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+        const days = Math.ceil((d - now) / 86400000);
+        const urgency = days <= 14 ? ' 🔴 '+days+'d left' : days <= 60 ? ' 🟡 '+days+'d' : '';
+        const name = CAL_NAMES[e.uni] ? '['+CAL_NAMES[e.uni]+'] ' : '';
+        html += `<li>${dl}: ${name}${e.title}${urgency}</li>`;
+      });
+      html += '</ul>';
+    }
+    document.getElementById('alert-box').innerHTML = html;
+  }
+})();
 </script>
 </body>
 </html>
