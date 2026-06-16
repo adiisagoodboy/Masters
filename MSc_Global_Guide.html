@@ -14,6 +14,13 @@
   body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.65;font-size:15px;}
   a{color:var(--accent);text-decoration:none;}
 
+  /* ── TRACK BUTTON ── */
+  .track-btn{padding:5px 13px;font-size:.75rem;border-radius:7px;cursor:pointer;font-weight:700;font-family:inherit;border:1.5px solid var(--border);background:transparent;color:var(--text2);transition:all .2s;white-space:nowrap;}
+  .track-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(123,142,200,.07);}
+  .track-btn.tracking{background:linear-gradient(135deg,rgba(123,142,200,.14),rgba(155,126,200,.1));border-color:var(--accent);color:#4A62A8;}
+  .tracked-count{font-size:.72rem;background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-weight:700;margin-left:4px;display:none;}
+  .tracked-count.has-items{display:inline;}
+
   /* ── COLLAPSIBLE SECTIONS ── */
   .panel{display:none;}
   .panel.open{display:block;animation:fadeIn .25s ease;}
@@ -438,7 +445,7 @@
     <button class="nav-logout" onclick="doLogout()">↩ Logout</button>
   </div>
   <div class="navbar-links">
-    <button class="nav-link" onclick="navToggle('home')">🏠 Home</button>
+    <button class="nav-link" onclick="navToggle('home')">🏠 Home <span class="tracked-count" id="tracked-count"></span></button>
     <button class="nav-link" id="nav-summary" onclick="navToggle('summary-section')">📊 Summary</button>
     <button class="nav-link" id="nav-ongoing" onclick="navToggle('ongoing-section')">🔄 Ongoing</button>
     <button class="nav-link" id="nav-cal" onclick="navToggle('cal-section')">📅 Calendar</button>
@@ -3513,6 +3520,84 @@ function go() {
   document.getElementById('cnt').textContent = vis.length+' programs shown';
 }
 go();
+initTrackButtons();
+
+// ── TRACKING ──
+function isTracked(uniId) {
+  return localStorage.getItem('tracking-'+uniId) === '1';
+}
+function toggleTrack(id) {
+  const current = isTracked(id);
+  localStorage.setItem('tracking-'+id, current ? '0' : '1');
+  document.querySelectorAll('.track-btn[data-uid="'+id+'"]').forEach(btn => updateTrackBtn(btn, id));
+  updateTrackedCount();
+  renderAlertBox();
+  if(typeof renderOngoing === 'function') renderOngoing();
+}
+function updateTrackBtn(btn, id) {
+  const on = isTracked(id);
+  btn.textContent = on ? '★ Tracking' : '☆ Track';
+  btn.classList.toggle('tracking', on);
+}
+function updateTrackedCount() {
+  const count = document.querySelectorAll('.card').length
+    ? Array.from(document.querySelectorAll('.card')).filter(c => isTracked(c.id)).length
+    : 0;
+  const el = document.getElementById('tracked-count');
+  if(el) { el.textContent = count; el.classList.toggle('has-items', count > 0); }
+}
+function initTrackButtons() {
+  document.querySelectorAll('.card').forEach(card => {
+    const id = card.id;
+    if(!id) return;
+    const footer = card.querySelector('.card-footer');
+    if(!footer) return;
+    const btn = document.createElement('button');
+    btn.className = 'track-btn';
+    btn.dataset.uid = id;
+    btn.onclick = () => toggleTrack(id);
+    updateTrackBtn(btn, id);
+    footer.insertBefore(btn, footer.firstChild);
+  });
+  updateTrackedCount();
+}
+
+function renderAlertBox() {
+  if(typeof CAL_EVENTS === 'undefined') return;
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0,10);
+  const monthLabel = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  const trackedUnis = new Set(
+    Array.from(document.querySelectorAll('.card')).filter(c => isTracked(c.id)).map(c => c.id)
+  );
+  const upcoming = CAL_EVENTS
+    .filter(e => e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
+    .filter(e => e.uni === 'preparation' || trackedUnis.has(e.uni))
+    .sort((a,b) => a.date.localeCompare(b.date))
+    .slice(0, 3);
+  const alertEl = document.getElementById('alert-box');
+  if(!alertEl) return;
+  if(!upcoming.length && trackedUnis.size === 0) {
+    alertEl.innerHTML = `<h3>☆ Track universities from the cards below to see their deadlines here</h3>`;
+    return;
+  }
+  if(!upcoming.length) {
+    alertEl.innerHTML = `<h3>🎉 All tasks complete — ${monthLabel}</h3>`;
+    return;
+  }
+  let html = `<h3>🔔 Next Up — ${monthLabel}</h3><ul>`;
+  upcoming.forEach(e => {
+    const d = new Date(e.date+'T12:00:00');
+    const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+    const days = Math.ceil((d - now) / 86400000);
+    const urgency = days <= 14
+      ? ` <span style="color:#C0392B;font-weight:700">⚡${days}d</span>`
+      : days <= 60 ? ` <span style="color:#C67C2B">●${days}d</span>` : '';
+    html += `<li>${dl} · ${e.title}${urgency}</li>`;
+  });
+  html += `</ul><div class="panel-toggle-hint"><span onclick="navToggle('cal-section')">See all in Calendar →</span></div>`;
+  alertEl.innerHTML = html;
+}
 
 function smoothTo(id) {
   const el = document.getElementById(id);
@@ -3675,12 +3760,19 @@ function renderCal() {
   }).join('');
 }
 
+// On calendar open, default-check only tracked unis + preparation
+(function initCalCheckboxes() {
+  document.querySelectorAll('#cal-sidebar input[type=checkbox]').forEach(cb => {
+    const uid = cb.value;
+    cb.checked = uid === 'preparation' || isTracked(uid);
+  });
+})();
 renderCal();
 
 // ── ONGOING APPLICATIONS ──
 function renderOngoing() {
   if(typeof CAL_EVENTS === 'undefined') return;
-  const uniIds = Object.keys(CAL_NAMES).filter(k => k !== 'preparation');
+  const uniIds = Object.keys(CAL_NAMES).filter(k => k !== 'preparation' && isTracked(k));
   const cards = [];
 
   uniIds.forEach(uid => {
@@ -3696,7 +3788,7 @@ function renderOngoing() {
   });
 
   if(!cards.length) {
-    document.getElementById('ongoing-grid').innerHTML = '<p class="ongoing-empty">No applications tracked yet — tick events in the Calendar below to start tracking progress here.</p>';
+    document.getElementById('ongoing-grid').innerHTML = '<p class="ongoing-empty">No universities tracked yet — click <strong>☆ Track</strong> on any program card to start tracking its progress and deadlines here.</p>';
     return;
   }
 
@@ -3810,28 +3902,8 @@ renderSummary();
   const tlNow = document.getElementById('tl-now-date');
   if(tlNow) tlNow.textContent = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'})+' — NOW';
 
-  // Dynamic alert box — 3 most urgent undone tasks
-  if(typeof CAL_EVENTS !== 'undefined') {
-    const upcoming = CAL_EVENTS
-      .filter(e => e.date >= todayStr && localStorage.getItem('cal:'+e.id) !== '1')
-      .sort((a,b) => a.date.localeCompare(b.date))
-      .slice(0, 3);
-    const monthLabel = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
-    if(!upcoming.length) {
-      document.getElementById('alert-box').innerHTML = `<h3>🎉 All tasks complete — ${monthLabel}</h3>`;
-    } else {
-      let html = `<h3>🔔 Next Up — ${monthLabel}</h3><ul>`;
-      upcoming.forEach(e => {
-        const d = new Date(e.date+'T12:00:00');
-        const dl = d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-        const days = Math.ceil((d - now) / 86400000);
-        const urgency = days <= 14 ? ` <span style="color:#C0392B;font-weight:700">⚡${days}d</span>` : days <= 60 ? ` <span style="color:#C67C2B">●${days}d</span>` : '';
-        html += `<li>${dl} · ${e.title}${urgency}</li>`;
-      });
-      html += `</ul><div class="panel-toggle-hint"><span onclick="navToggle('cal-section')">See all tasks in Calendar →</span></div>`;
-      document.getElementById('alert-box').innerHTML = html;
-    }
-  }
+  // Alert box now rendered by renderAlertBox() which respects tracked universities
+  if(typeof renderAlertBox === 'function') renderAlertBox();
 })();
 </script>
 </body>
