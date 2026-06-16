@@ -1,0 +1,3273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aditya's MSc Global Guide — Winter 2027</title>
+<style>
+  :root {
+    --bg:#F4F6FB; --bg2:#E8ECF7; --bg3:#DDE3F2;
+    --accent:#7B8EC8; --text:#1E2340; --text2:#5A6380;
+    --card:#FFFFFF; --border:#CDD3EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+  a{color:var(--accent);text-decoration:none;}
+
+  .hero{background:linear-gradient(135deg,#EEF1FF,#E4E8F8,#EBF0FF);padding:56px 40px 36px;text-align:center;border-bottom:2px solid var(--accent);}
+  .hero h1{font-size:2.3rem;font-weight:800;background:linear-gradient(90deg,#7B8EC8,#9B7EC8,#7B8EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+  .hero p{color:var(--text2);font-size:1rem;}
+
+  .section{max-width:1000px;margin:0 auto;padding:0 20px;}
+
+  .profile-strip{background:var(--bg3);border:1px solid var(--border);border-radius:12px;margin:24px auto;max-width:1000px;padding:18px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;}
+  .pi{display:flex;flex-direction:column;}
+  .pi .pl{font-size:.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;}
+  .pi .pv{font-size:1rem;font-weight:700;}
+  .pi .pv.good{color:#27AE60;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:20px auto;max-width:1000px;padding:0 20px;}
+  .stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 22px;text-align:center;}
+  .sn{font-size:1.8rem;font-weight:800;color:var(--accent);}
+  .sl{font-size:.78rem;color:var(--text2);}
+
+  .alert{background:linear-gradient(90deg,#FEF9EE,#FEF3DC);border:1px solid #E8A845;border-radius:10px;margin:0 auto 20px;max-width:1000px;padding:14px 20px;}
+  .alert h3{color:#B86E00;margin-bottom:8px;font-size:.93rem;}
+  .alert li{color:var(--text2);font-size:.85rem;padding:3px 0;list-style:none;}
+  .alert li::before{content:"⚡ ";color:#E67E22;}
+
+  .controls{max-width:1000px;margin:0 auto 20px;padding:0 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .controls label{font-size:.83rem;color:var(--text2);}
+  .controls select{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:8px;font-size:.83rem;cursor:pointer;}
+  .controls select:hover{border-color:var(--accent);}
+  .cnt{margin-left:auto;color:var(--text2);font-size:.83rem;}
+
+  .cards{max-width:1000px;margin:0 auto;padding:0 20px 60px;display:flex;flex-direction:column;gap:20px;}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;transition:transform .2s,box-shadow .2s;}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(123,142,200,.2);}
+  .card.hidden{display:none!important;}
+  .card-bar{width:5px;flex-shrink:0;}
+  .card-body{flex:1;padding:20px 24px;}
+
+  .card-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;}
+  .univ{font-size:.88rem;color:var(--text2);font-weight:500;}
+  .prog{font-size:1.12rem;font-weight:700;color:var(--text);margin:3px 0;}
+  .meta{font-size:.8rem;color:var(--text2);}
+
+  .badges{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;}
+  .badge{padding:3px 10px;border-radius:12px;font-size:.73rem;font-weight:700;color:#fff;}
+  .qs-badge{background:#E0E8F5;border:1px solid #7B8EC8;color:#3A5090;padding:3px 10px;border-radius:12px;font-size:.73rem;font-weight:700;}
+
+  /* ── COST BOX ── */
+  .cost-box{background:rgba(123,142,200,.06);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:14px;}
+  .cost-row-inner{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+  .cost-item{display:flex;flex-direction:column;align-items:center;min-width:120px;}
+  .cost-label{font-size:.72rem;color:var(--text2);text-align:center;margin-bottom:4px;}
+  .cost-eur{font-size:.95rem;font-weight:600;color:var(--text);}
+  .cost-inr{font-size:.82rem;color:#4A6CB8;}
+  .cost-plus,.cost-equals{font-size:1.4rem;color:var(--text2);font-weight:300;padding:0 4px;}
+  .cost-total-item{background:rgba(123,142,200,.12);border:1px solid rgba(123,142,200,.4);border-radius:8px;padding:8px 16px;}
+  .cost-eur-big{font-size:1.05rem;font-weight:700;color:var(--text);text-align:center;}
+  .cost-inr-big{font-size:1.2rem;font-weight:800;text-align:center;}
+  .cost-note{font-size:.73rem;color:var(--text2);margin-top:4px;}
+
+  .highlight-box{background:rgba(123,142,200,.08);border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 6px 6px 0;margin-bottom:14px;font-size:.87rem;color:var(--text);}
+
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-bottom:14px;}
+  .di{display:flex;flex-direction:column;gap:2px;}
+  .dl{font-size:.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+  .dv{font-size:.86rem;color:var(--text);}
+
+  .subjects-wrap{margin-bottom:14px;font-size:.87rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+  .tag{background:rgba(123,142,200,.08);border:1px solid var(--border);padding:3px 9px;border-radius:10px;font-size:.77rem;color:var(--text2);}
+
+  .card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:12px;border-top:1px solid var(--border);}
+  .match{font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px;}
+  .match-excellent{background:rgba(39,174,96,.18);color:#2ECC71;border:1px solid #27AE60;}
+  .match-strong{background:rgba(41,128,185,.12);color:#1F6FA8;border:1px solid #5DADE2;}
+  .apply-btn{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-size:.87rem;font-weight:600;transition:opacity .2s;}
+  .apply-btn:hover{opacity:.85;}
+
+  /* ── TABLE ── */
+  .tbl-section{max-width:1000px;margin:0 auto 50px;padding:0 20px;}
+  .tbl-section h2{font-size:1.35rem;margin-bottom:16px;}
+  .tw{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:.8rem;}
+  th{background:var(--bg3);color:var(--text2);text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;}
+  tr:hover td{background:rgba(0,0,0,.03);}
+  .t-g{color:#27AE60;font-weight:700;}
+  .t-o{color:#F39C12;font-weight:700;}
+  .t-r{color:#E74C3C;font-weight:700;}
+
+  /* ── TIMELINE ── */
+  .tl-section{max-width:1000px;margin:0 auto 60px;padding:0 20px;}
+  .tl-section h2{font-size:1.35rem;margin-bottom:16px;}
+  .tl{position:relative;padding-left:32px;}
+  .tl::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border);}
+  .tli{position:relative;margin-bottom:22px;}
+  .dot{position:absolute;left:-28px;top:5px;width:15px;height:15px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);}
+  .tdate{font-size:.78rem;color:var(--accent);font-weight:700;margin-bottom:3px;}
+  .ttitle{font-weight:600;margin-bottom:3px;}
+  .tbody{font-size:.86rem;color:var(--text2);}
+
+  footer{text-align:center;padding:28px;color:var(--text2);font-size:.8rem;border-top:1px solid var(--border);}
+
+  @media(max-width:640px){
+    .hero h1{font-size:1.55rem;}
+    .detail-grid{grid-template-columns:1fr;}
+    .cost-row-inner{flex-direction:column;}
+    .card-top{flex-direction:column;}
+  }
+
+  /* ── CALENDAR ── */
+  .cal-section{max-width:1000px;margin:0 auto 50px;padding:0 20px;}
+  .cal-section>h2{font-size:1.35rem;margin-bottom:6px;}
+  .cal-note{font-size:.75rem;color:var(--text2);margin-bottom:16px;padding:6px 12px;background:rgba(123,142,200,.07);border-radius:6px;border-left:3px solid var(--accent);}
+  .cal-layout{display:grid;grid-template-columns:190px 1fr;gap:16px;}
+  .cal-sidebar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;position:sticky;top:16px;align-self:start;max-height:82vh;overflow-y:auto;}
+  .cal-sidebar>h3{font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text2);margin-bottom:10px;}
+  .cal-grp{margin-bottom:10px;}
+  .cal-grp-label{font-size:.67rem;text-transform:uppercase;letter-spacing:.8px;color:var(--text2);font-weight:700;padding:3px 0;border-bottom:1px solid var(--border);margin-bottom:5px;}
+  .cal-cb{display:flex;align-items:center;gap:5px;padding:2px 0;cursor:pointer;}
+  .cal-cb input{accent-color:var(--accent);cursor:pointer;flex-shrink:0;width:13px;height:13px;}
+  .cal-cb label{font-size:.76rem;color:var(--text);cursor:pointer;line-height:1.3;}
+  .cal-cdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .cal-btns{display:flex;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border);}
+  .cal-btn{flex:1;padding:4px 0;font-size:.72rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;text-align:center;}
+  .cal-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .cal-main{display:flex;flex-direction:column;gap:12px;min-width:0;}
+  .cal-nav{display:flex;align-items:center;gap:8px;}
+  .cal-nav-title{font-size:1.05rem;font-weight:700;color:var(--text);flex:1;text-align:center;}
+  .cal-arrow{width:30px;height:30px;background:var(--card);border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;color:var(--text);}
+  .cal-arrow:hover{border-color:var(--accent);color:var(--accent);}
+  .cal-today-btn{padding:4px 12px;font-size:.75rem;background:var(--card);border:1px solid var(--border);border-radius:7px;cursor:pointer;color:var(--text2);white-space:nowrap;}
+  .cal-today-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .cal-grid-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .cal-weekrow{display:grid;grid-template-columns:repeat(7,1fr);background:var(--bg3);border-bottom:2px solid var(--border);}
+  .cal-wday{text-align:center;padding:6px 2px;font-size:.67rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+  .cal-days-grid{display:grid;grid-template-columns:repeat(7,1fr);}
+  .cal-cell{min-height:76px;padding:4px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;overflow:hidden;}
+  .cal-cell:nth-child(7n){border-right:none;}
+  .cal-cell:hover{background:var(--bg2);}
+  .cal-cell.sel{background:rgba(123,142,200,.1);outline:2px solid var(--accent);outline-offset:-2px;}
+  .cal-cell.dim .cal-dnum{color:var(--border);}
+  .cal-cell.today .cal-dnum{background:var(--accent);color:#fff;border-radius:50%;}
+  .cal-dnum{font-size:.76rem;font-weight:600;color:var(--text);width:20px;height:20px;display:flex;align-items:center;justify-content:center;margin-bottom:3px;}
+  .cal-pills{display:flex;flex-direction:column;gap:2px;}
+  .cal-pill{font-size:.58rem;padding:1px 3px;border-radius:3px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5;}
+  .cal-more{font-size:.6rem;color:var(--text2);padding:0 2px;}
+  .cal-panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;}
+  .cal-panel-head{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:12px;}
+  .cal-evt-row{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);}
+  .cal-evt-row:last-child{border-bottom:none;}
+  .cal-check{width:16px;height:16px;border:2px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:transparent;transition:all .2s;}
+  .cal-check.done{background:#27AE60;border-color:#27AE60;color:#fff;}
+  .cal-evt-body{flex:1;min-width:0;}
+  .cal-evt-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;}
+  .cal-evt-name{font-size:.85rem;font-weight:600;color:var(--text);}
+  .cal-evt-name.crossed{text-decoration:line-through;color:var(--text2);}
+  .cal-uni-tag{font-size:.65rem;padding:1px 6px;border-radius:7px;color:#fff;font-weight:700;flex-shrink:0;}
+  .cal-evt-date{font-size:.73rem;color:var(--text2);margin-bottom:2px;}
+  .cal-evt-note{font-size:.76rem;color:var(--text2);line-height:1.55;}
+  .cal-no-evts{color:var(--text2);font-size:.85rem;padding:20px 0;text-align:center;}
+  @media(max-width:700px){
+    .cal-layout{grid-template-columns:1fr;}
+    .cal-sidebar{position:static;max-height:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🎓 Aditya's MSc Global Guide</h1>
+  <p>Personalized research · 36 programs · 12 countries · All costs in EUR + INR · Winter 2027</p>
+</div>
+
+<div style="max-width:1000px;margin:24px auto;padding:0 20px">
+<div class="profile-strip">
+  <div class="pi"><span class="pl">Student</span><span class="pv">Aditya (VIT Chennai)</span></div>
+  <div class="pi"><span class="pl">Degree</span><span class="pv">BTech CSE — AI & Robotics</span></div>
+  <div class="pi"><span class="pl">CGPA</span><span class="pv good">9.52 / 10 ⭐</span></div>
+  <div class="pi"><span class="pl">German GPA Equiv.</span><span class="pv good">~1.3 (Outstanding)</span></div>
+  <div class="pi"><span class="pl">Target</span><span class="pv">Winter 2027 Intake</span></div>
+  <div class="pi"><span class="pl">Excluded</span><span class="pv">US · UK · German-taught</span></div>
+  <div class="pi"><span class="pl">EUR → INR rate</span><span class="pv">€1 ≈ ₹90</span></div>
+</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="sn">36</div><div class="sl">Programs</div></div>
+  <div class="stat"><div class="sn">12</div><div class="sl">Countries</div></div>
+  <div class="stat"><div class="sn">₹18L</div><div class="sl">Cheapest All-In</div></div>
+  <div class="stat"><div class="sn">₹1.09Cr</div><div class="sl">Most Expensive</div></div>
+  <div class="stat"><div class="sn">#7</div><div class="sl">Top Ranked (ETH)</div></div>
+  <div class="stat"><div class="sn">18</div><div class="sl">No-GRE Options</div></div>
+</div>
+
+<div style="max-width:1000px;margin:0 auto;padding:0 20px">
+<div class="alert">
+  <h3>🔔 Key Action Items — Start Now (May 2026)</h3>
+  <ul>
+    <li>Jun–Aug 2026: GRE prep & attempt (needed for RWTH Aachen, ETH Zurich, Saarland, Aalto, NUS)</li>
+    <li>Jun–Sep 2026: Apply for APS Certificate at German Embassy in India (3–5 months processing, mandatory for Germany)</li>
+    <li>Jun–Oct 2026: IELTS/TOEFL preparation and exam</li>
+    <li>Dec 1, 2026: ETH Zurich deadline · Dec 15, 2026: EPFL Excellence Fellowship (CHF 10k/sem + full tuition!)</li>
+    <li>Jan 2027: KTH, Chalmers, DTU, Aalto, UvA, NUS — have all documents ready before Jan 1</li>
+    <li>Feb–May 2027: Main European application window for remaining universities</li>
+    <li>Apr–May 2027: Australian July 2027 intake applications</li>
+  </ul>
+</div>
+</div>
+
+<div class="controls">
+  <label>Region:</label>
+  <select id="fRegion" onchange="go()">
+    <option value="all">All Regions</option>
+    <option value="germany">🇩🇪 Germany</option>
+    <option value="austria">🇦🇹 Austria</option>
+    <option value="switzerland">🇨🇭 Switzerland</option>
+    <option value="other_europe">🌍 Other Europe</option>
+    <option value="ireland">🇮🇪 Ireland</option>
+    <option value="australia">🇦🇺 Australia</option>
+    <option value="singapore">🇸🇬 Singapore</option>
+  </select>
+  <label>GRE:</label>
+  <select id="fGRE" onchange="go()">
+    <option value="all">Any</option>
+    <option value="no">No GRE</option>
+    <option value="yes">GRE Required</option>
+  </select>
+  <label>Max All-In Budget (₹):</label>
+  <select id="fBudget" onchange="go()">
+    <option value="99999999">Any</option>
+    <option value="2500000">Under ₹25L</option>
+    <option value="3500000">Under ₹35L</option>
+    <option value="5000000">Under ₹50L</option>
+    <option value="7000000">Under ₹70L</option>
+    <option value="10000000">Under ₹1Cr</option>
+  </select>
+  <label>Sort by:</label>
+  <select id="fSort" onchange="go()">
+    <option value="allin">All-In Cost (Low → High)</option>
+    <option value="qs">QS Ranking (Best first)</option>
+    <option value="country">Country A→Z</option>
+  </select>
+  <span class="cnt" id="cnt">36 programs shown</span>
+</div>
+
+<div class="cards" id="grid">
+<div class="card" id="de-saarland-dsai" data-region="germany" data-allin="20320" data-qs="605" data-gre="yes" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 Saarland University</div>
+        <div class="prog">MSc Data Science & Artificial Intelligence</div>
+        <div class="meta">📍 Saarbrücken, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #601–610</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,120</div>
+          <div class="cost-inr">₹1.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €800/mo)</div>
+          <div class="cost-eur">€19,200</div>
+          <div class="cost-inr">₹17.3L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€20,320</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹18.3 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Saarbrücken</div>
+    </div>
+
+    <div class="highlight-box">⭐ DFKI — world's largest AI research center — headquartered in Saarbrücken</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 95 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Required (non-EU); Indian GATE accepted</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">75% / top 10% preferred</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory) · GATE accepted instead of GRE</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD €934/month · Deutschlandstipendium €300/month</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">AI Planning</span><span class="tag">Big Data</span><span class="tag">Data Visualization</span><span class="tag">Statistical Modeling</span><span class="tag">Data Security</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-saarland-dsai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://saarland-informatics-campus.de/en/studium-studies/data-science-and-artificial-intelligence-master/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-saarland-cs" data-region="germany" data-allin="20776" data-qs="605" data-gre="yes" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 Saarland University</div>
+        <div class="prog">MSc Computer Science</div>
+        <div class="meta">📍 Saarbrücken, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #601–610</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,576</div>
+          <div class="cost-inr">₹1.4L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €800/mo)</div>
+          <div class="cost-eur">€19,200</div>
+          <div class="cost-inr">₹17.3L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€20,776</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹18.7 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Saarbrücken</div>
+    </div>
+
+    <div class="highlight-box">⭐ Max Planck Institute for Informatics co-located — world-class CS research</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 95 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Required (non-EU); GATE accepted</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">75% / top 10% preferred</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory) · GATE accepted</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">AI</span><span class="tag">Cybersecurity</span><span class="tag">Visual Computing</span><span class="tag">HCI</span><span class="tag">Algorithms</span><span class="tag">Max Planck Institute electives</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-saarland-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.uni-saarland.de/en/study/programmes/master/informatics.html" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="be-kuleuven-ai" data-region="other_europe" data-allin="21494" data-qs="73" data-gre="no" data-country="Belgium">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇧🇪 KU Leuven</div>
+        <div class="prog">Master of Artificial Intelligence (1 Year)</div>
+        <div class="meta">📍 Leuven, Belgium &nbsp;·&nbsp; 1 year &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #73</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€9,494</div>
+          <div class="cost-inr">₹8.5L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (12mo @ €1,000/mo)</div>
+          <div class="cost-eur">€12,000</div>
+          <div class="cost-inr">₹10.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€21,494</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹19.3 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Leuven</div>
+    </div>
+
+    <div class="highlight-box">⭐ #73 globally, 1 year, Leuven is a cheap student city — best value-for-prestige in Europe</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Mar 1, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 94 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Verify on portal</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Good bachelor's in CS/Engineering/Math/Physics</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Orientation Year</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Work permit required</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">KU Leuven scholarships · VLIR-UOS (Belgium govt for developing countries)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Neural Networks</span><span class="tag">Knowledge Representation</span><span class="tag">Search & Planning</span><span class="tag">Speech & Language Technology</span><span class="tag">Big Data Analytics</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#be-kuleuven-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://wms.cs.kuleuven.be/cs/studeren/master-artificial-intelligence/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-dresden-cs" data-region="germany" data-allin="23400" data-qs="218" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 TU Dresden</div>
+        <div class="prog">MSc Computer Science</div>
+        <div class="meta">📍 Dresden, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #218</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,200</div>
+          <div class="cost-inr">₹1.1L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €925/mo)</div>
+          <div class="cost-eur">€22,200</div>
+          <div class="cost-inr">₹20.0L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€23,400</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹21.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Dresden</div>
+    </div>
+
+    <div class="highlight-box">⭐ Silicon Saxony hub — AMD, Infineon, SAP; one of Germany's most affordable cities</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jul 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.0 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Aptitude assessment required</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Saxony State Funding</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Visual Computing & Machine Learning</span><span class="tag">Cyber-Physical Systems</span><span class="tag">Distributed Systems</span><span class="tag">Software Technology</span><span class="tag">Secure Computing</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-dresden-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://tu-dresden.de/ing/informatik/studium/studienangebot/master-studiengaenge/m-sc-computer-science" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-rwth-ds" data-region="germany" data-allin="24116" data-qs="99" data-gre="yes" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 RWTH Aachen University</div>
+        <div class="prog">MSc Data Science</div>
+        <div class="meta">📍 Aachen, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #99</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,316</div>
+          <div class="cost-inr">₹1.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €950/mo)</div>
+          <div class="cost-eur">€22,800</div>
+          <div class="cost-inr">₹20.5L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€24,116</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹21.7 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Aachen</div>
+    </div>
+
+    <div class="highlight-box">⭐ #99 globally — top German university; strong automotive/tech industry ties</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Mar 1, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.0 · 72 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Required: Quant >75th%ile, Verbal >15th%ile, AW ≥3.5</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Competitive — no minimum stated</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD €934/month · Deutschlandstipendium €300/month · RWTH internal</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Mathematics of DS</span><span class="tag">Intro to Data Science</span><span class="tag">Ethics & Data</span><span class="tag">CS specialization</span><span class="tag">Business Analytics</span><span class="tag">Computational Life Science</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-rwth-ds" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/studiengaenge/liste-aktuelle-studiengaenge/studiengangbeschreibung/~pzpc/data-science-m-sc/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="at-jku-ai" data-region="austria" data-allin="24607" data-qs="900" data-gre="no" data-country="Austria">
+  <div class="card-bar" style="background:#C0392B"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇹 JKU Linz</div>
+        <div class="prog">MSc Artificial Intelligence</div>
+        <div class="meta">📍 Linz, Austria &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #801–1000 (#378 CS)</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€3,007</div>
+          <div class="cost-inr">₹2.7L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €900/mo)</div>
+          <div class="cost-eur">€21,600</div>
+          <div class="cost-inr">₹19.4L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€24,607</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹22.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Linz</div>
+    </div>
+
+    <div class="highlight-box">⭐ Dedicated AI MSc — 4 specialization tracks including Embedded Intelligence & Robot Learning</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Sep 2027 (approx)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 88 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">CS/math competency required</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Red-White-Red Card+</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">Check Austria requirements</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">OeAD Ernst Mach Grant · JKU internal</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Deep Learning</span><span class="tag">Reinforcement Learning</span><span class="tag">Machine Learning</span><span class="tag">Logic-based AI</span><span class="tag">Statistical Methods</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#at-jku-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.jku.at/en/degree-programs/types-of-degree-programs/masters-degree-programs/ma-artificial-intelligence/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-bonn-ai" data-region="germany" data-allin="25380" data-qs="227" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 University of Bonn</div>
+        <div class="prog">MSc Artificial Intelligence</div>
+        <div class="meta">📍 Bonn, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #227</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,380</div>
+          <div class="cost-inr">₹1.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€25,380</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹22.8 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Bonn</div>
+    </div>
+
+    <div class="highlight-box">⭐ Dedicated MSc AI — directly AI-focused; Fraunhofer IAIS nearby</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jun 1, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 95 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Strong math/CS background</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Hausdorff Center for Mathematics</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Reinforcement Learning</span><span class="tag">Robot Learning</span><span class="tag">Explainable AI</span><span class="tag">Biomedical AI</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-bonn-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.uni-bonn.de/en/studying/degree-programs/degree-programs-a-z/artificial-intelligence-msc" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-tu-berlin" data-region="germany" data-allin="30080" data-qs="147" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 TU Berlin</div>
+        <div class="prog">MSc Computer Science</div>
+        <div class="meta">📍 Berlin, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #147</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,280</div>
+          <div class="cost-inr">₹1.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,200/mo)</div>
+          <div class="cost-eur">€28,800</div>
+          <div class="cost-inr">₹25.9L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€30,080</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹27.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Berlin</div>
+    </div>
+
+    <div class="highlight-box">⭐ Berlin startup ecosystem (Silicon Allee) — Amazon, Siemens, SAP all nearby</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Aug 31, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 87 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Strong CS background required</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Berlin State Scholarships</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Data & Software Engineering</span><span class="tag">Embedded Systems</span><span class="tag">Cognitive Systems</span><span class="tag">Machine Learning</span><span class="tag">Distributed Systems</span><span class="tag">HCI</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-tu-berlin" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tu.berlin/en/studying/study-programs/all-programs-offered/study-course/computer-science-informatik-m-sc" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="at-tugraz-cs" data-region="austria" data-allin="30100" data-qs="413" data-gre="no" data-country="Austria">
+  <div class="card-bar" style="background:#C0392B"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇹 Graz University of Technology</div>
+        <div class="prog">MSc CS — Robotics / ML Tracks</div>
+        <div class="meta">📍 Graz, Austria &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #413 (#151–175 CS)</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€6,100</div>
+          <div class="cost-inr">₹5.5L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€30,100</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹27.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Graz</div>
+    </div>
+
+    <div class="highlight-box">⭐ Flexible Robotics + ML major combo; AVL (world's largest automotive testing co.) nearby</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Dec 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">No stated minimum; admission procedure applies</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Red-White-Red Card+</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">VFS Global competence check for Indian applicants</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">OeAD Ernst Mach Grant · TU Graz High Potentials · Austria 300 Indian seats</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning (major)</span><span class="tag">Intelligent Systems</span><span class="tag">Robotics (major)</span><span class="tag">Visual Computing</span><span class="tag">Data Science</span><span class="tag">Computer Vision</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#at-tugraz-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tugraz.at/en/studying-and-teaching/degree-and-certificate-programmes/masters-degree-programmes/computer-science" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="at-tugraz-ds" data-region="austria" data-allin="30100" data-qs="413" data-gre="no" data-country="Austria">
+  <div class="card-bar" style="background:#C0392B"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇹 Graz University of Technology</div>
+        <div class="prog">MSc Data Science</div>
+        <div class="meta">📍 Graz, Austria &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #413</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€6,100</div>
+          <div class="cost-inr">₹5.5L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€30,100</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹27.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Graz</div>
+    </div>
+
+    <div class="highlight-box">⭐ Know-Center (AI competence center) + AVL industry partnerships in Graz</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Dec 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">No stated minimum</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Red-White-Red Card+</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">VFS Global competence check for Indian applicants</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">OeAD Ernst Mach Grant · TU Graz High Potentials</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Advanced ML</span><span class="tag">Statistical Analysis</span><span class="tag">Optimization</span><span class="tag">Data Management</span><span class="tag">Visual Computing</span><span class="tag">Applied Data Analysis</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#at-tugraz-ds" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tugraz.at/en/studying-and-teaching/degree-and-certificate-programmes/masters-degree-programmes/data-science" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-hamburg-ias" data-region="germany" data-allin="30140" data-qs="191" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 University of Hamburg</div>
+        <div class="prog">MSc Intelligent Adaptive Systems</div>
+        <div class="meta">📍 Hamburg, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #191</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€1,340</div>
+          <div class="cost-inr">₹1.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,200/mo)</div>
+          <div class="cost-eur">€28,800</div>
+          <div class="cost-inr">₹25.9L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€30,140</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹27.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Hamburg</div>
+    </div>
+
+    <div class="highlight-box">⭐ Best robotics-AI integration in Germany — free tuition, dedicated program</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jun 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">BSc CS/related; min 60 ECTS in CS</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Hamburg State</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Knowledge & Learning (AI/ML)</span><span class="tag">Sensor & Motor Systems (Robotics)</span><span class="tag">Neuro-Cognition</span><span class="tag">Reinforcement Learning</span><span class="tag">NLP</span><span class="tag">Computer Vision</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-hamburg-ias" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.inf.uni-hamburg.de/en/studies/master/ias.html" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-freiburg-cs" data-region="germany" data-allin="30760" data-qs="212" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 University of Freiburg</div>
+        <div class="prog">MSc CS — AI Specialization</div>
+        <div class="meta">📍 Freiburg, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #212</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€6,760</div>
+          <div class="cost-inr">₹6.1L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€30,760</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹27.7 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Freiburg</div>
+    </div>
+
+    <div class="highlight-box">⭐ Prof. Wolfram Burgard — world-renowned in autonomous navigation/robotics</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 31, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 95 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Strong background; no stated minimum</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Erasmus+</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">Computer Graphics</span><span class="tag">Cyber-Physical Systems</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-freiburg-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tf.uni-freiburg.de/en/study-programs/computer-science/m-sc-computer-science" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="at-tuwien-ds" data-region="austria" data-allin="33007" data-qs="190" data-gre="no" data-country="Austria">
+  <div class="card-bar" style="background:#C0392B"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇹 TU Wien (Vienna Univ. of Technology)</div>
+        <div class="prog">MSc Data Science</div>
+        <div class="meta">📍 Vienna, Austria &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #190 (#91 CS)</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€3,007</div>
+          <div class="cost-inr">₹2.7L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,250/mo)</div>
+          <div class="cost-eur">€30,000</div>
+          <div class="cost-inr">₹27.0L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€33,007</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹29.7 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Vienna</div>
+    </div>
+
+    <div class="highlight-box">⭐ QS #91 in CS globally — Austria 300 Indian engineering seats initiative</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Oct 31, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Competency in algorithms, programming, databases, maths/statistics</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Red-White-Red Card+</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed; VFS check may apply</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">OeAD Ernst Mach Grant (€1,050–1,300/month) · TU Wien internal</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">ML & Statistics</span><span class="tag">Big Data & HPC</span><span class="tag">Visual Analytics</span><span class="tag">Semantic Technologies</span><span class="tag">Data Science Fundamentals</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#at-tuwien-ds" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://informatics.tuwien.ac.at/master/data-science/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="de-stuttgart-cs" data-region="germany" data-allin="33136" data-qs="310" data-gre="no" data-country="Germany">
+  <div class="card-bar" style="background:#2E75B6"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇪 University of Stuttgart</div>
+        <div class="prog">MSc CS — Autonomous Systems</div>
+        <div class="meta">📍 Stuttgart, Germany &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English only</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #310</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€6,736</div>
+          <div class="cost-inr">₹6.1L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,100/mo)</div>
+          <div class="cost-eur">€26,400</div>
+          <div class="cost-inr">₹23.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€33,136</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹29.8 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Stuttgart</div>
+    </div>
+
+    <div class="highlight-box">⭐ Bosch, Daimler, Porsche, BMW R&D nearby — autonomous systems capital of Germany</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">High competition — no minimum stated</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">18-month Job Seeker Visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">120 days/year</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS Certificate (mandatory)</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DAAD · Deutschlandstipendium · Baden-Württemberg Scholarship</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Artificial Intelligence</span><span class="tag">Decision Making</span><span class="tag">Robotics</span><span class="tag">Autonomous Systems</span><span class="tag">Visual Computing</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#de-stuttgart-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.uni-stuttgart.de/en/study/study-programs/Computer-Science-M.Sc.-00001/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="it-polimi-cse" data-region="other_europe" data-allin="33200" data-qs="98" data-gre="no" data-country="Italy">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇮🇹 Politecnico di Milano</div>
+        <div class="prog">MSc CS & Engineering — AI Curriculum</div>
+        <div class="meta">📍 Milan, Italy &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #98 (#1 Italy)</span>
+        <span class="badge" style="background:#27AE60">Budget Friendly</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€8,000</div>
+          <div class="cost-inr">₹7.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,050/mo)</div>
+          <div class="cost-eur">€25,200</div>
+          <div class="cost-inr">₹22.7L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€33,200</div>
+          <div class="cost-inr-big" style="color:#27AE60">₹29.9 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Milan</div>
+    </div>
+
+    <div class="highlight-box">⭐ #98 globally at ~€8k tuition — Google, Amazon, Accenture all in Milan; Italy's top university</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Aug 2027 · Jan 2027 also available</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 88 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Strong undergraduate grades; means-tested fees</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month job-search visa</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">~20 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DSU (Italian govt — needs-based full/partial waivers) · PoliMi merit scholarships · Erasmus Mundus</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Computer Vision</span><span class="tag">Data Mining</span><span class="tag">Autonomous Robotics</span><span class="tag">NLP</span><span class="tag">Big Data</span><span class="tag">Recommender Systems</span><span class="tag">HCI</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#it-polimi-cse" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/computer-science-and-engineering" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="ie-dcu-ai" data-region="ireland" data-allin="36800" data-qs="410" data-gre="no" data-country="Ireland">
+  <div class="card-bar" style="background:#16A085"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇮🇪 Dublin City University (DCU)</div>
+        <div class="prog">MSc Computing — Artificial Intelligence</div>
+        <div class="meta">📍 Dublin, Ireland &nbsp;·&nbsp; 1 year &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #410</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€20,000</div>
+          <div class="cost-inr">₹18.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (12mo @ €1,400/mo)</div>
+          <div class="cost-eur">€16,800</div>
+          <div class="cost-inr">₹15.1L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€36,800</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹33.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Dublin</div>
+    </div>
+
+    <div class="highlight-box">⭐ €5,000 auto-scholarship; 24-month post-study work right; most affordable Irish option</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Apr 6, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 92 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Good bachelor's in computing-related field</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">24 months (Stamp 1G)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week term; 40 hrs/week holidays</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">€5,000 auto-reduction for non-EU (Engineering & Computing) → effective €20,000</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Foundations of AI</span><span class="tag">Machine Learning</span><span class="tag">Data Analytics & Mining</span><span class="tag">Statistical Data Analysis</span><span class="tag">NLP / Information Retrieval</span><span class="tag">Data Management</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#ie-dcu-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.dcu.ie/computing/msc-computing-major-3-artificial-intelligence" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="ie-tcd-cs" data-region="ireland" data-allin="44590" data-qs="87" data-gre="no" data-country="Ireland">
+  <div class="card-bar" style="background:#16A085"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇮🇪 Trinity College Dublin (TCD)</div>
+        <div class="prog">MSc CS — Intelligent Systems</div>
+        <div class="meta">📍 Dublin, Ireland &nbsp;·&nbsp; 1 year &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #87 (QS 2026: #75)</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€27,790</div>
+          <div class="cost-inr">₹25.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (12mo @ €1,400/mo)</div>
+          <div class="cost-eur">€16,800</div>
+          <div class="cost-inr">₹15.1L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€44,590</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹40.1 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Dublin</div>
+    </div>
+
+    <div class="highlight-box">⭐ #87 globally — excellent 1-year program; your 9.52 CGPA is very competitive here</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jun 30, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">2:1 Honours Computing; proven programming (C/C++/Java/Python)</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">24 months (Stamp 1G)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week term; 40 hrs/week holidays</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Limited merit-based bursaries</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">AI</span><span class="tag">Information Retrieval & Web Search</span><span class="tag">Knowledge & Data Engineering</span><span class="tag">Text Analytics</span><span class="tag">Adaptive Applications</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#ie-tcd-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tcd.ie/courses/postgraduate/courses/computer-science---intelligent-systems--mscpgraddip/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="ie-ucd-ai" data-region="ireland" data-allin="48580" data-qs="118" data-gre="no" data-country="Ireland">
+  <div class="card-bar" style="background:#16A085"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇮🇪 University College Dublin (UCD)</div>
+        <div class="prog">MSc Advanced Artificial Intelligence</div>
+        <div class="meta">📍 Dublin, Ireland &nbsp;·&nbsp; 1 year &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #118</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€31,780</div>
+          <div class="cost-inr">₹28.6L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (12mo @ €1,400/mo)</div>
+          <div class="cost-eur">€16,800</div>
+          <div class="cost-inr">₹15.1L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€48,580</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹43.7 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Dublin</div>
+    </div>
+
+    <div class="highlight-box">⭐ Named MSc Advanced AI; 1-year ROI is excellent; strong fintech/tech sector in Dublin</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">~Oct 2026 opens for Sep 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 90–100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">2:1 Honours CS/CE/AI/Math/Physics; ≥1 ML/AI module; programming required</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">24 months (Stamp 1G)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week term; 40 hrs/week holidays</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">UCD Global Excellence Scholarship (check availability)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Deep Learning</span><span class="tag">Reinforcement Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">AI Ethics</span><span class="tag">Machine Learning</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#ie-ucd-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.ucd.ie/cs/study/graduate/mscprogrammes/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="ch-epfl-robotics" data-region="switzerland" data-allin="50000" data-qs="17" data-gre="no" data-country="Switzerland">
+  <div class="card-bar" style="background:#27AE60"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇨🇭 EPFL</div>
+        <div class="prog">MSc Robotics</div>
+        <div class="meta">📍 Lausanne, Switzerland &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #17</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€9,200</div>
+          <div class="cost-inr">₹8.3L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,700/mo)</div>
+          <div class="cost-eur">€40,800</div>
+          <div class="cost-inr">₹36.7L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€50,000</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹45.0 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Lausanne</div>
+    </div>
+
+    <div class="highlight-box">⭐ #17 globally — Excellence Fellowship = fully funded; top robotics labs worldwide</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Apr 15, 2027 · Dec 15, 2026 (Fellowship)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Optional (competitive: Quant 167+)</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">8.0+/10 (9.52 from VIT is very strong)</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">6-month job-seeking extension</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">15 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS not required</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">EPFL Excellence Fellowship (CHF 10,000/sem + full tuition waiver) · Swiss Govt Excellence Scholarship</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Mobile Robotics</span><span class="tag">Robotic Manipulators</span><span class="tag">Computer Vision</span><span class="tag">AI for Robots</span><span class="tag">Autonomous Vehicles</span><span class="tag">Sensor Fusion</span><span class="tag">Brain-Interfaced Robots</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#ch-epfl-robotics" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.epfl.ch/education/master/programs/robotics/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="se-chalmers-dsai" data-region="other_europe" data-allin="51400" data-qs="139" data-gre="no" data-country="Sweden">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇸🇪 Chalmers University of Technology</div>
+        <div class="prog">MSc Data Science and AI</div>
+        <div class="meta">📍 Gothenburg, Sweden &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #139</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€28,600</div>
+          <div class="cost-inr">₹25.7L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €950/mo)</div>
+          <div class="cost-eur">€22,800</div>
+          <div class="cost-inr">₹20.5L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€51,400</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹46.3 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Gothenburg</div>
+    </div>
+
+    <div class="highlight-box">⭐ IPOET Scholarship can cover full 2-year tuition. Gothenburg: Volvo, Zenuity automotive AI</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">BSc with maths 30cr (Calculus, LinAlg, Stats) + programming + algorithms</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month job-seeking permit</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">No hour restriction</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Chalmers IPOET Scholarship (covers full 2-year tuition) · Swedish Institute Scholarship</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Statistical Learning</span><span class="tag">Data Engineering</span><span class="tag">Deep Learning</span><span class="tag">AI and Society</span><span class="tag">NLP</span><span class="tag">Computer Vision</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#se-chalmers-dsai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.chalmers.se/en/education/find-masters-programme/data-science-and-ai-msc/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="sg-ntu-msai" data-region="singapore" data-allin="56858" data-qs="15" data-gre="no" data-country="Singapore">
+  <div class="card-bar" style="background:#E74C3C"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇸🇬 Nanyang Technological University (NTU)</div>
+        <div class="prog">MSc Artificial Intelligence (MSAI)</div>
+        <div class="meta">📍 Singapore, Singapore &nbsp;·&nbsp; 1 year &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #15 (#5 AI globally)</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€42,458</div>
+          <div class="cost-inr">₹38.2L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (12mo @ €1,200/mo)</div>
+          <div class="cost-eur">€14,400</div>
+          <div class="cost-inr">₹13.0L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€56,858</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹51.2 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Singapore</div>
+    </div>
+
+    <div class="highlight-box">⭐ #5 globally for AI by subject. Named MSc AI. 1-year fast-track. Jan & Aug intakes</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jun 19, 2027 (Jan 2028 intake approx)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Optional — not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Good honours degree; strong maths; or bachelor's + 2yrs exp</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month LTVP job-search → Employment Pass after offer</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">16 hrs/week term; unlimited vacation</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed · GRE optional</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">10% rebate NTU alumni · limited international scholarships ([email protected])</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Mathematics for AI</span><span class="tag">AI Ethics</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Robotics</span><span class="tag">IoT</span><span class="tag">Generative AI</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#sg-ntu-msai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-artificial-intelligence" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="se-kth-ml" data-region="other_europe" data-allin="56888" data-qs="74" data-gre="no" data-country="Sweden">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇸🇪 KTH Royal Institute of Technology</div>
+        <div class="prog">MSc Machine Learning</div>
+        <div class="meta">📍 Stockholm, Sweden &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #74</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€32,000</div>
+          <div class="cost-inr">₹28.8L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,037/mo)</div>
+          <div class="cost-eur">€24,888</div>
+          <div class="cost-inr">₹22.4L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€56,888</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹51.2 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Stockholm</div>
+    </div>
+
+    <div class="highlight-box">⭐ SI Scholarship targets Indian students — covers full tuition + living. Stockholm: Spotify, Klarna, King</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">BSc CS/EE/Math or related</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month job-seeking permit</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">No hour restriction</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">KTH Scholarship (full tuition, ~8% admitted) · Swedish Institute (SI) Scholarship (tuition + living for India)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Core ML</span><span class="tag">Deep Learning</span><span class="tag">Generative AI</span><span class="tag">Computer Vision</span><span class="tag">Speech Processing</span><span class="tag">Robotics applications</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#se-kth-ml" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.kth.se/en/studies/master/machine-learning/description-1.48533" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="ch-eth-robotics" data-region="switzerland" data-allin="57200" data-qs="7" data-gre="yes" data-country="Switzerland">
+  <div class="card-bar" style="background:#27AE60"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇨🇭 ETH Zurich</div>
+        <div class="prog">MSc Robotics, Systems and Control</div>
+        <div class="meta">📍 Zurich, Switzerland &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English (primary)</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #7</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€9,200</div>
+          <div class="cost-inr">₹8.3L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €2,000/mo)</div>
+          <div class="cost-eur">€48,000</div>
+          <div class="cost-inr">₹43.2L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€57,200</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹51.5 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Zurich</div>
+    </div>
+
+    <div class="highlight-box">⭐ #7 globally — world-class robotics; new 2025 fees make tuition cheap but Zurich is expensive to live</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Dec 1, 2026</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 (C1) · 100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Required non-EU: Quant 168, Verbal 159, AW 4.5</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Equivalent to ETH BSc — very high standard</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">6-month job-seeking extension</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">15 hrs/week</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">APS not required · GRE required</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">ETH Excellence Scholarship (living + tuition) · Swiss Govt Excellence Scholarship</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Robot Kinematics & Dynamics</span><span class="tag">Control Theory</span><span class="tag">Computer Vision</span><span class="tag">ML for Robotics</span><span class="tag">Legged Robots</span><span class="tag">Autonomous Systems</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#ch-eth-robotics" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://master-robotics.ethz.ch/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="dk-dtu-auto" data-region="other_europe" data-allin="57600" data-qs="109" data-gre="no" data-country="Denmark">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇩🇰 DTU (Technical Univ. of Denmark)</div>
+        <div class="prog">MSc Autonomous Systems</div>
+        <div class="meta">📍 Copenhagen, Denmark &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #109</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€30,000</div>
+          <div class="cost-inr">₹27.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,150/mo)</div>
+          <div class="cost-eur">€27,600</div>
+          <div class="cost-inr">₹24.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€57,600</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹51.8 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Copenhagen</div>
+    </div>
+
+    <div class="highlight-box">⭐ 3-year post-study stay — best in all of Europe. Dedicated autonomous systems program</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">~75% of maximum obtainable grade</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">3 years (longest in Europe!)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">20 hrs/week during term</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">DTU Excellence Scholarship · Danish Government Scholarships</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Autonomous Robotics</span><span class="tag">Computer Vision</span><span class="tag">ML for Control</span><span class="tag">Sensor Fusion</span><span class="tag">AI Planning</span><span class="tag">Drone Systems</span><span class="tag">Human-Robot Interaction</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#dk-dtu-auto" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.dtu.dk/english/education/graduate/msc-programmes/autonomous-systems" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="fi-aalto-ml" data-region="other_europe" data-allin="58000" data-qs="115" data-gre="yes" data-country="Finland">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇫🇮 Aalto University</div>
+        <div class="prog">MSc ML, Data Science & AI — Macadamia</div>
+        <div class="meta">📍 Espoo (Helsinki), Finland &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #115</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€34,000</div>
+          <div class="cost-inr">₹30.6L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€58,000</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹52.2 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Espoo (Helsinki)</div>
+    </div>
+
+    <div class="highlight-box">⭐ 2-year post-study permit — best in Nordics. Highly regarded Macadamia ML programme</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 2, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 92 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">GRE required for non-EU/EEA (scores by Jan 9)</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Excellent academics; core maths + programming + algorithms</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (best Nordic post-study!)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">25 hrs/week during term</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed · GRE required</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Aalto tuition fee waivers (merit-based, limited)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Deep Learning & Generative Models</span><span class="tag">Computer Vision & Multimodal Learning</span><span class="tag">Probabilistic Modeling</span><span class="tag">Trustworthy AI</span><span class="tag">Speech & Language Tech</span><span class="tag">Bayesian Methods</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#fi-aalto-ml" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.aalto.fi/en/study-options/machine-learning-data-science-and-artificial-intelligence-master-of-science-technology" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-uq-cs" data-region="australia" data-allin="60614" data-qs="40" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 University of Queensland (UQ)</div>
+        <div class="prog">Master of Computer Science</div>
+        <div class="meta">📍 Brisbane, Australia &nbsp;·&nbsp; 1 year (fast-track) &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #40</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€35,414</div>
+          <div class="cost-inr">₹31.9L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (18mo @ €1,400/mo)</div>
+          <div class="cost-eur">€25,200</div>
+          <div class="cost-inr">₹22.7L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€60,614</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹54.6 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Brisbane</div>
+    </div>
+
+    <div class="highlight-box">⭐ Best value Group of Eight. 1–1.5yr with CS background. Brisbane = cheaper city</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 31, 2027 (Jul intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 87 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Min 5.0/7 GPA equivalent</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485 Graduate Visa)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited (from July 2023)</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">UQ Excellence Scholarships · 100+ awards at scholarships.uq.edu.au</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Machine Learning</span><span class="tag">Algorithms & Data Structures</span><span class="tag">Advanced Security</span><span class="tag">CS Electives</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-uq-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://study.uq.edu.au/study-options/programs/master-computer-science-5522" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="nl-tue-dsai" data-region="other_europe" data-allin="64000" data-qs="179" data-gre="no" data-country="Netherlands">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇳🇱 TU/e Eindhoven</div>
+        <div class="prog">MSc Data Science and Artificial Intelligence</div>
+        <div class="meta">📍 Eindhoven, Netherlands &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #179</span>
+        <span class="badge" style="background:#F39C12">Moderate</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€40,000</div>
+          <div class="cost-inr">₹36.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€64,000</div>
+          <div class="cost-inr-big" style="color:#F39C12">₹57.6 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Eindhoven</div>
+    </div>
+
+    <div class="highlight-box">⭐ ASML & NXP campus — high-tech internship ecosystem. Orange Tulip for Indian students</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 1, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 90 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Min ~7.0/10; strong maths, programming, statistics</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Orientation Year (Zoekjaar)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">16 hrs/week term; unlimited summer</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">Orange Tulip Scholarship specifically for Indian students</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">TU/e Excellence Scholarship · Holland Scholarship (€5,000) · Orange Tulip Scholarship (India-specific)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Statistical Foundations</span><span class="tag">Data Mining</span><span class="tag">Process Analytics</span><span class="tag">AI Planning</span><span class="tag">Deep Learning</span><span class="tag">Responsible AI</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#nl-tue-dsai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tue.nl/en/education/graduate-school/master-data-science-and-artificial-intelligence" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="sg-nus-ai" data-region="singapore" data-allin="66687" data-qs="8" data-gre="yes" data-country="Singapore">
+  <div class="card-bar" style="background:#E74C3C"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇸🇬 National University of Singapore (NUS)</div>
+        <div class="prog">MComp — AI Specialisation</div>
+        <div class="meta">📍 Singapore, Singapore &nbsp;·&nbsp; 1 year (fast-track) &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #8</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#E74C3C">GRE Required</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€45,087</div>
+          <div class="cost-inr">₹40.6L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (18mo @ €1,200/mo)</div>
+          <div class="cost-eur">€21,600</div>
+          <div class="cost-inr">₹19.4L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€66,687</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹60.0 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Singapore</div>
+    </div>
+
+    <div class="highlight-box">⭐ #8 globally. GATE accepted for Indians. NUS GRTII Scholarship covers most tuition</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 31, 2027 (for Aug 2027 intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.0 · 90 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">GRE 320+ (V+Q) + AW 3.5; OR GMAT 650; OR GATE (Indian students!)</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Good honours degree — typically 3.5/4.0 or First/Upper Second</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month LTVP job-search → Employment Pass</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">16 hrs/week term; unlimited vacation</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">GATE scores accepted instead of GRE — unique advantage for Indian students!</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">NUS GRTII Master's Scholarship (SGD 45,000 toward tuition) · Enhanced Tuition Fee Rebate</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">ML Fundamentals</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Probabilistic Reasoning</span><span class="tag">AI Ethics</span><span class="tag">Research Project</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#sg-nus-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.comp.nus.edu.sg/programmes/pg/mcs/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="nl-tudelft-robotics" data-region="other_europe" data-allin="75000" data-qs="49" data-gre="no" data-country="Netherlands">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇳🇱 TU Delft</div>
+        <div class="prog">MSc Robotics / MSc Computer Science</div>
+        <div class="meta">📍 Delft, Netherlands &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #49</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€51,000</div>
+          <div class="cost-inr">₹45.9L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,000/mo)</div>
+          <div class="cost-eur">€24,000</div>
+          <div class="cost-inr">₹21.6L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€75,000</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹67.5 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Delft</div>
+    </div>
+
+    <div class="highlight-box">⭐ #49 globally — world-class robotics. ASML, Philips, Airbus nearby. Delft cheaper than Amsterdam</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Apr 1, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5–7.0 · 90–100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">~75%+ in bachelor's; Robotics: Python, linear algebra, control theory</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Orientation Year (Zoekjaar)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">16 hrs/week term; unlimited summer</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Delft Excellence Scholarship · Netherlands Fellowship Programmes</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Robot Kinematics</span><span class="tag">Control Theory</span><span class="tag">Computer Vision</span><span class="tag">Autonomous Navigation</span><span class="tag">Human-Robot Interaction</span><span class="tag">ML</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#nl-tudelft-robotics" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.tudelft.nl/en/education/programmes/masters/robotics/msc-robotics" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-monash-ai" data-region="australia" data-allin="83700" data-qs="37" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 Monash University</div>
+        <div class="prog">Master of Artificial Intelligence</div>
+        <div class="meta">📍 Melbourne, Australia &nbsp;·&nbsp; 1 year (fast-track) &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #37</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€56,700</div>
+          <div class="cost-inr">₹51.0L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (18mo @ €1,500/mo)</div>
+          <div class="cost-eur">€27,000</div>
+          <div class="cost-inr">₹24.3L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€83,700</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹75.3 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Melbourne</div>
+    </div>
+
+    <div class="highlight-box">⭐ Named Master of AI — perfect alignment. ACS accredited. 1.5yr fast-track for BTech CS</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">~Apr 2027 (Jul intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Credit avg (60%); 1.5yr with IT/Engineering degree</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Monash International Merit Scholarship (AUD 15,000/year)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Robotics</span><span class="tag">Knowledge Representation</span><span class="tag">AI Ethics</span><span class="tag">Data Mining</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-monash-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="nl-uva-ai" data-region="other_europe" data-allin="84400" data-qs="55" data-gre="no" data-country="Netherlands">
+  <div class="card-bar" style="background:#8E44AD"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇳🇱 University of Amsterdam (UvA)</div>
+        <div class="prog">MSc Artificial Intelligence</div>
+        <div class="meta">📍 Amsterdam, Netherlands &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #55</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€52,000</div>
+          <div class="cost-inr">₹46.8L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,350/mo)</div>
+          <div class="cost-eur">€32,400</div>
+          <div class="cost-inr">₹29.2L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€84,400</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹76.0 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Amsterdam</div>
+    </div>
+
+    <div class="highlight-box">⭐ #55 globally; Amsterdam Merit Scholarship can cover significant costs. Top AI research hub in Europe</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Jan 15, 2027</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">7.0 · 100 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Very competitive — top 200 admitted; strong CS/AI/Math background</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">12-month Orientation Year (Zoekjaar)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">16 hrs/week term; unlimited summer</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Amsterdam Merit Scholarship (up to €25,000/year for top international students) · Faculty of Science scholarships</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Probabilistic AI</span><span class="tag">Reinforcement Learning</span><span class="tag">Knowledge Representation</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#nl-uva-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.uva.nl/en/programmes/masters/artificial-intelligence/artificial-intelligence.html" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-adelaide-ai" data-region="australia" data-allin="93378" data-qs="82" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 University of Adelaide</div>
+        <div class="prog">Master of AI & Machine Learning</div>
+        <div class="meta">📍 Adelaide, Australia &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #82</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€66,978</div>
+          <div class="cost-inr">₹60.3L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,100/mo)</div>
+          <div class="cost-eur">€26,400</div>
+          <div class="cost-inr">₹23.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€93,378</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹84.0 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Adelaide</div>
+    </div>
+
+    <div class="highlight-box">⭐ Named AI & ML — most affordable Australian capital city. ACS provisionally accredited</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Rolling — apply 6 weeks before intake</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · N/A</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">4.5/7 (~65%+)</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Adelaide international scholarships (check adelaide.edu.au/scholarships)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Generative AI</span><span class="tag">ML Algorithms</span><span class="tag">Deep Learning Applications</span><span class="tag">Programming for AI/ML</span><span class="tag">Ethics in AI</span><span class="tag">Computer Vision & Multimodal ML</span><span class="tag">Statistical Foundations</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-adelaide-ai" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://adelaide.edu.au/study/degrees/master-of-artificial-intelligence-and-machine-learning/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-anu-mlcv" data-region="australia" data-allin="98466" data-qs="30" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 Australian National University (ANU)</div>
+        <div class="prog">Master of Machine Learning & CV</div>
+        <div class="meta">📍 Canberra, Australia &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #30</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€68,466</div>
+          <div class="cost-inr">₹61.6L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,250/mo)</div>
+          <div class="cost-eur">€30,000</div>
+          <div class="cost-inr">₹27.0L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€98,466</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹88.6 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Canberra</div>
+    </div>
+
+    <div class="highlight-box">⭐ Named ML & Computer Vision — perfect match for your specialization. Auto-scholarship considered</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Mar 31, 2027 (Jul intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 80 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">GPA 5/7 (~71%) — your 9.52 ≈ 6.5/7 (well above)</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">ANU Chancellor's International Scholarship (25–50% auto-considered) — saves ~AUD 28,060</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Computer Vision</span><span class="tag">Statistical Machine Learning</span><span class="tag">Advanced Deep Learning for CV</span><span class="tag">ML Fundamentals</span><span class="tag">Research Project / Industry Internship</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-excellent">Profile Match: EXCELLENT</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-anu-mlcv" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://programsandcourses.anu.edu.au/program/mmlcv" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-sydney-cs" data-region="australia" data-allin="109222" data-qs="18" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 University of Sydney</div>
+        <div class="prog">Master of CS — Data Science & AI</div>
+        <div class="meta">📍 Sydney, Australia &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #18</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€67,222</div>
+          <div class="cost-inr">₹60.5L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,750/mo)</div>
+          <div class="cost-eur">€42,000</div>
+          <div class="cost-inr">₹37.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€109,222</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹98.3 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Sydney</div>
+    </div>
+
+    <div class="highlight-box">⭐ #18 globally. 20% auto-scholarship. Sydney CBD tech corridor — major global firms</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 29, 2027 (Aug intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 85 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">Credit average (65%) in any bachelor's</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">Sydney International Student Award (20% off) · Vice-Chancellor's Intl Scholarship (AUD 40,000)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">Data Science</span><span class="tag">AI</span><span class="tag">Algorithms</span><span class="tag">Theory of Computation</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-sydney-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.sydney.edu.au/courses/courses/pc/master-of-computing.html" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-unimelb-cs" data-region="australia" data-allin="112830" data-qs="13" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 University of Melbourne</div>
+        <div class="prog">Master of Computer Science</div>
+        <div class="meta">📍 Melbourne, Australia &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #13</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€76,830</div>
+          <div class="cost-inr">₹69.1L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,500/mo)</div>
+          <div class="cost-eur">€36,000</div>
+          <div class="cost-inr">₹32.4L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€112,830</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹101.5 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Melbourne</div>
+    </div>
+
+    <div class="highlight-box">⭐ #13 globally — Australia's most prestigious. 25–50% scholarship auto-considered. Melbourne tech hub</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">May 31, 2027 (Jul intake) · Nov 30, 2026 (Feb intake)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 81 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">WAM 75% (Credit+) + 25pts university-level maths</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">International Postgraduate Coursework Award (25–50% tuition waiver) · 1,200+ awards available</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">AI</span><span class="tag">Machine Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Distributed Computing</span><span class="tag">Knowledge Systems</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-unimelb-cs" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://study.unimelb.edu.au/find/courses/graduate/master-of-computer-science/" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="card" id="au-unsw-it" data-region="australia" data-allin="121605" data-qs="19" data-gre="no" data-country="Australia">
+  <div class="card-bar" style="background:#E67E22"></div>
+  <div class="card-body">
+
+    <div class="card-top">
+      <div>
+        <div class="univ">🇦🇺 UNSW Sydney</div>
+        <div class="prog">Master of IT — AI Specialisation</div>
+        <div class="meta">📍 Sydney, Australia &nbsp;·&nbsp; 2 years &nbsp;·&nbsp; English</div>
+      </div>
+      <div class="badges">
+        <span class="qs-badge">QS #19</span>
+        <span class="badge" style="background:#E74C3C">Premium</span>
+        <span class="badge" style="background:#27AE60">No GRE</span>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN BOX -->
+    <div class="cost-box">
+      <div class="cost-row-inner">
+        <div class="cost-item">
+          <div class="cost-label">🎓 Tuition Fees</div>
+          <div class="cost-eur">€79,605</div>
+          <div class="cost-inr">₹71.6L</div>
+        </div>
+        <div class="cost-plus">+</div>
+        <div class="cost-item">
+          <div class="cost-label">🏠 Living (24mo @ €1,750/mo)</div>
+          <div class="cost-eur">€42,000</div>
+          <div class="cost-inr">₹37.8L</div>
+        </div>
+        <div class="cost-equals">=</div>
+        <div class="cost-item cost-total-item">
+          <div class="cost-label">💰 TRUE TOTAL</div>
+          <div class="cost-eur-big">€121,605</div>
+          <div class="cost-inr-big" style="color:#E74C3C">₹109.4 Lakhs</div>
+        </div>
+      </div>
+      <div class="cost-note">Living estimate includes: rent, food, transport, utilities, misc expenses in Sydney</div>
+    </div>
+
+    <div class="highlight-box">⭐ 20% auto-scholarship saves ~AUD 26,100. Scientia Scholarship available. Top-20 globally</div>
+
+    <div class="detail-grid">
+      <div class="di"><span class="dl">📅 Deadline (Winter 2027)</span><span class="dv">Rolling (Term 1 Feb, Term 2 May, Term 3 Sept)</span></div>
+      <div class="di"><span class="dl">🔬 IELTS / TOEFL</span><span class="dv">6.5 · 90 iBT</span></div>
+      <div class="di"><span class="dl">📊 GRE</span><span class="dv">Not required</span></div>
+      <div class="di"><span class="dl">🎓 Min CGPA / Grade</span><span class="dv">WAM 65% (Credit) in computing-related bachelor's</span></div>
+      <div class="di"><span class="dl">✈️ Post-Study Work</span><span class="dv">2 years (Subclass 485)</span></div>
+      <div class="di"><span class="dl">💼 Work During Study</span><span class="dv">Unlimited</span></div>
+      <div class="di"><span class="dl">🇮🇳 India-Specific</span><span class="dv">No APS needed</span></div>
+      <div class="di"><span class="dl">🏆 Scholarships</span><span class="dv">International Scientia Scholarship (full tuition or AUD 20,000/yr) · International Student Award (20% auto)</span></div>
+    </div>
+
+    <div class="subjects-wrap"><strong>Key Subjects:</strong><div class="tags"><span class="tag">AI Fundamentals</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Data Science</span><span class="tag">Database Systems</span></div></div>
+
+    <div class="card-footer">
+      <span class="match match-strong">Profile Match: STRONG</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="detail.html#au-unsw-it" class="apply-btn" style="background:#1a6fa8;">Deep Dive →</a>
+        <a href="https://www.unsw.edu.au/study/postgraduate/master-of-information-technology" target="_blank" class="apply-btn">Visit Program →</a>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<div class="cal-section" id="cal-section">
+  <h2>📅 Application Calendar</h2>
+  <p class="cal-note">⚠️ Deadlines shown are best-effort based on university portals — always verify directly with each university before submitting. Tick events as done to track your progress (saved in your browser).</p>
+  <div class="cal-layout">
+
+    <!-- Sidebar: university filter -->
+    <div class="cal-sidebar" id="cal-sidebar">
+      <h3>Show Universities</h3>
+      <div class="cal-grp">
+        <div class="cal-cb"><input type="checkbox" id="cb-preparation" value="preparation" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B8EC8"></div><label for="cb-preparation">📋 Preparation</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇩🇪 Germany</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-saarland-dsai" value="de-saarland-dsai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-saarland-dsai">Saarland DSAI</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-saarland-cs" value="de-saarland-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-saarland-cs">Saarland CS</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-rwth-ds" value="de-rwth-ds" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-rwth-ds">RWTH Aachen</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-hamburg-ias" value="de-hamburg-ias" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-hamburg-ias">Hamburg IAS</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-bonn-ai" value="de-bonn-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-bonn-ai">Bonn AI</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-freiburg-cs" value="de-freiburg-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-freiburg-cs">Freiburg CS</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-dresden-cs" value="de-dresden-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-dresden-cs">TU Dresden</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-stuttgart-cs" value="de-stuttgart-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-stuttgart-cs">Stuttgart</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-de-tu-berlin" value="de-tu-berlin" checked onchange="renderCal()"><div class="cal-cdot" style="background:#4A7EC8"></div><label for="cb-de-tu-berlin">TU Berlin</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇦🇹 Austria</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-at-tuwien-ds" value="at-tuwien-ds" checked onchange="renderCal()"><div class="cal-cdot" style="background:#E05A4E"></div><label for="cb-at-tuwien-ds">TU Wien</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-at-jku-ai" value="at-jku-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#E05A4E"></div><label for="cb-at-jku-ai">JKU Linz</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-at-tugraz-cs" value="at-tugraz-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#E05A4E"></div><label for="cb-at-tugraz-cs">TU Graz (Rob)</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-at-tugraz-ds" value="at-tugraz-ds" checked onchange="renderCal()"><div class="cal-cdot" style="background:#E05A4E"></div><label for="cb-at-tugraz-ds">TU Graz (DS)</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇨🇭 Switzerland</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-ch-eth-robotics" value="ch-eth-robotics" checked onchange="renderCal()"><div class="cal-cdot" style="background:#8E3A59"></div><label for="cb-ch-eth-robotics">ETH Zurich</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-ch-epfl-robotics" value="ch-epfl-robotics" checked onchange="renderCal()"><div class="cal-cdot" style="background:#8E3A59"></div><label for="cb-ch-epfl-robotics">EPFL</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🌍 Other Europe</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-be-kuleuven-ai" value="be-kuleuven-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#B8860B"></div><label for="cb-be-kuleuven-ai">KU Leuven</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-it-polimi-cse" value="it-polimi-cse" checked onchange="renderCal()"><div class="cal-cdot" style="background:#2E8B57"></div><label for="cb-it-polimi-cse">PoliMi Milan</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-dk-dtu-auto" value="dk-dtu-auto" checked onchange="renderCal()"><div class="cal-cdot" style="background:#C84A4A"></div><label for="cb-dk-dtu-auto">DTU Denmark</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-se-kth-ml" value="se-kth-ml" checked onchange="renderCal()"><div class="cal-cdot" style="background:#1565C0"></div><label for="cb-se-kth-ml">KTH Sweden</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-se-chalmers-dsai" value="se-chalmers-dsai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#1A78C0"></div><label for="cb-se-chalmers-dsai">Chalmers</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-fi-aalto-ml" value="fi-aalto-ml" checked onchange="renderCal()"><div class="cal-cdot" style="background:#0D7EA0"></div><label for="cb-fi-aalto-ml">Aalto Finland</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-nl-tue-dsai" value="nl-tue-dsai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#D4711A"></div><label for="cb-nl-tue-dsai">TU/e</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-nl-tudelft-robotics" value="nl-tudelft-robotics" checked onchange="renderCal()"><div class="cal-cdot" style="background:#D4711A"></div><label for="cb-nl-tudelft-robotics">TU Delft</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-nl-uva-ai" value="nl-uva-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#D4711A"></div><label for="cb-nl-uva-ai">UvA Amsterdam</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇮🇪 Ireland</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-ie-dcu-ai" value="ie-dcu-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#2E9B5F"></div><label for="cb-ie-dcu-ai">DCU</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-ie-tcd-cs" value="ie-tcd-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#2E9B5F"></div><label for="cb-ie-tcd-cs">Trinity Dublin</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-ie-ucd-ai" value="ie-ucd-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#2E9B5F"></div><label for="cb-ie-ucd-ai">UCD</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇦🇺 Australia</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-uq-cs" value="au-uq-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-uq-cs">UQ</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-monash-ai" value="au-monash-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-monash-ai">Monash</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-adelaide-ai" value="au-adelaide-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-adelaide-ai">Adelaide</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-anu-mlcv" value="au-anu-mlcv" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-anu-mlcv">ANU</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-sydney-cs" value="au-sydney-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-sydney-cs">Univ Sydney</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-unimelb-cs" value="au-unimelb-cs" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-unimelb-cs">Melbourne</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-au-unsw-it" value="au-unsw-it" checked onchange="renderCal()"><div class="cal-cdot" style="background:#7B4AC8"></div><label for="cb-au-unsw-it">UNSW</label></div>
+      </div>
+      <div class="cal-grp">
+        <div class="cal-grp-label">🇸🇬 Singapore</div>
+        <div class="cal-cb"><input type="checkbox" id="cb-sg-ntu-msai" value="sg-ntu-msai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#C84A8E"></div><label for="cb-sg-ntu-msai">NTU</label></div>
+        <div class="cal-cb"><input type="checkbox" id="cb-sg-nus-ai" value="sg-nus-ai" checked onchange="renderCal()"><div class="cal-cdot" style="background:#C84A8E"></div><label for="cb-sg-nus-ai">NUS</label></div>
+      </div>
+      <div class="cal-btns">
+        <button class="cal-btn" onclick="calAll(true)">All</button>
+        <button class="cal-btn" onclick="calAll(false)">None</button>
+        <button class="cal-btn" onclick="calPrepOnly()">Prep</button>
+      </div>
+    </div>
+
+    <!-- Main calendar -->
+    <div class="cal-main">
+      <div class="cal-nav">
+        <button class="cal-arrow" onclick="calNav(-1)">&#8249;</button>
+        <div class="cal-nav-title" id="cal-title"></div>
+        <button class="cal-arrow" onclick="calNav(1)">&#8250;</button>
+        <button class="cal-today-btn" onclick="calGoToday()">Today</button>
+      </div>
+      <div class="cal-grid-wrap">
+        <div class="cal-weekrow">
+          <div class="cal-wday">Mon</div><div class="cal-wday">Tue</div><div class="cal-wday">Wed</div>
+          <div class="cal-wday">Thu</div><div class="cal-wday">Fri</div><div class="cal-wday">Sat</div><div class="cal-wday">Sun</div>
+        </div>
+        <div class="cal-days-grid" id="cal-days"></div>
+      </div>
+      <div class="cal-panel">
+        <div class="cal-panel-head" id="cal-panel-head">Events this month</div>
+        <div id="cal-evt-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tbl-section">
+  <h2>📊 Complete Comparison — All-In Cost (Tuition + Living)</h2>
+  <div class="tw">
+  <table>
+    <thead><tr>
+      <th>University</th><th>Program</th><th>QS</th>
+      <th>Tuition</th><th>Living Total</th><th>ALL-IN TOTAL</th>
+      <th>Duration</th><th>GRE</th><th>Post-Study Work</th>
+    </tr></thead>
+    <tbody><tr>
+  <td><strong>🇩🇪 Saarland University</strong><br><small>Saarbrücken</small></td>
+  <td>MSc Data Science & Artificial Intelligence</td>
+  <td>#601–610</td>
+  <td>€1,120<br><small style='color:#888'>₹1.0L</small></td>
+  <td>€19,200<br><small style='color:#888'>₹17.3L</small></td>
+  <td class="t-g"><strong>€20,320</strong><br><strong>₹18.3L</strong></td>
+  <td>2 years</td>
+  <td>✅</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇩🇪 Saarland University</strong><br><small>Saarbrücken</small></td>
+  <td>MSc Computer Science</td>
+  <td>#601–610</td>
+  <td>€1,576<br><small style='color:#888'>₹1.4L</small></td>
+  <td>€19,200<br><small style='color:#888'>₹17.3L</small></td>
+  <td class="t-g"><strong>€20,776</strong><br><strong>₹18.7L</strong></td>
+  <td>2 years</td>
+  <td>✅</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇧🇪 KU Leuven</strong><br><small>Leuven</small></td>
+  <td>Master of Artificial Intelligence (1 Year)</td>
+  <td>#73</td>
+  <td>€9,494<br><small style='color:#888'>₹8.5L</small></td>
+  <td>€12,000<br><small style='color:#888'>₹10.8L</small></td>
+  <td class="t-g"><strong>€21,494</strong><br><strong>₹19.3L</strong></td>
+  <td>1 year</td>
+  <td>❌</td>
+  <td>12-month Orientation Year</td>
+</tr><tr>
+  <td><strong>🇩🇪 TU Dresden</strong><br><small>Dresden</small></td>
+  <td>MSc Computer Science</td>
+  <td>#218</td>
+  <td>€1,200<br><small style='color:#888'>₹1.1L</small></td>
+  <td>€22,200<br><small style='color:#888'>₹20.0L</small></td>
+  <td class="t-g"><strong>€23,400</strong><br><strong>₹21.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇩🇪 RWTH Aachen University</strong><br><small>Aachen</small></td>
+  <td>MSc Data Science</td>
+  <td>#99</td>
+  <td>€1,316<br><small style='color:#888'>₹1.2L</small></td>
+  <td>€22,800<br><small style='color:#888'>₹20.5L</small></td>
+  <td class="t-g"><strong>€24,116</strong><br><strong>₹21.7L</strong></td>
+  <td>2 years</td>
+  <td>✅</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇦🇹 JKU Linz</strong><br><small>Linz</small></td>
+  <td>MSc Artificial Intelligence</td>
+  <td>#801–1000 (#378 CS)</td>
+  <td>€3,007<br><small style='color:#888'>₹2.7L</small></td>
+  <td>€21,600<br><small style='color:#888'>₹19.4L</small></td>
+  <td class="t-g"><strong>€24,607</strong><br><strong>₹22.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Red-White-Red Card+</td>
+</tr><tr>
+  <td><strong>🇩🇪 University of Bonn</strong><br><small>Bonn</small></td>
+  <td>MSc Artificial Intelligence</td>
+  <td>#227</td>
+  <td>€1,380<br><small style='color:#888'>₹1.2L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-g"><strong>€25,380</strong><br><strong>₹22.8L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇩🇪 TU Berlin</strong><br><small>Berlin</small></td>
+  <td>MSc Computer Science</td>
+  <td>#147</td>
+  <td>€1,280<br><small style='color:#888'>₹1.2L</small></td>
+  <td>€28,800<br><small style='color:#888'>₹25.9L</small></td>
+  <td class="t-g"><strong>€30,080</strong><br><strong>₹27.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇦🇹 Graz University of Technology</strong><br><small>Graz</small></td>
+  <td>MSc CS — Robotics / ML Tracks</td>
+  <td>#413 (#151–175 CS)</td>
+  <td>€6,100<br><small style='color:#888'>₹5.5L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-g"><strong>€30,100</strong><br><strong>₹27.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Red-White-Red Card+</td>
+</tr><tr>
+  <td><strong>🇦🇹 Graz University of Technology</strong><br><small>Graz</small></td>
+  <td>MSc Data Science</td>
+  <td>#413</td>
+  <td>€6,100<br><small style='color:#888'>₹5.5L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-g"><strong>€30,100</strong><br><strong>₹27.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Red-White-Red Card+</td>
+</tr><tr>
+  <td><strong>🇩🇪 University of Hamburg</strong><br><small>Hamburg</small></td>
+  <td>MSc Intelligent Adaptive Systems</td>
+  <td>#191</td>
+  <td>€1,340<br><small style='color:#888'>₹1.2L</small></td>
+  <td>€28,800<br><small style='color:#888'>₹25.9L</small></td>
+  <td class="t-g"><strong>€30,140</strong><br><strong>₹27.1L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇩🇪 University of Freiburg</strong><br><small>Freiburg</small></td>
+  <td>MSc CS — AI Specialization</td>
+  <td>#212</td>
+  <td>€6,760<br><small style='color:#888'>₹6.1L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-g"><strong>€30,760</strong><br><strong>₹27.7L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇦🇹 TU Wien (Vienna Univ. of Technology)</strong><br><small>Vienna</small></td>
+  <td>MSc Data Science</td>
+  <td>#190 (#91 CS)</td>
+  <td>€3,007<br><small style='color:#888'>₹2.7L</small></td>
+  <td>€30,000<br><small style='color:#888'>₹27.0L</small></td>
+  <td class="t-g"><strong>€33,007</strong><br><strong>₹29.7L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Red-White-Red Card+</td>
+</tr><tr>
+  <td><strong>🇩🇪 University of Stuttgart</strong><br><small>Stuttgart</small></td>
+  <td>MSc CS — Autonomous Systems</td>
+  <td>#310</td>
+  <td>€6,736<br><small style='color:#888'>₹6.1L</small></td>
+  <td>€26,400<br><small style='color:#888'>₹23.8L</small></td>
+  <td class="t-g"><strong>€33,136</strong><br><strong>₹29.8L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>18-month Job Seeker Visa</td>
+</tr><tr>
+  <td><strong>🇮🇹 Politecnico di Milano</strong><br><small>Milan</small></td>
+  <td>MSc CS & Engineering — AI Curriculum</td>
+  <td>#98 (#1 Italy)</td>
+  <td>€8,000<br><small style='color:#888'>₹7.2L</small></td>
+  <td>€25,200<br><small style='color:#888'>₹22.7L</small></td>
+  <td class="t-g"><strong>€33,200</strong><br><strong>₹29.9L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month job-search visa</td>
+</tr><tr>
+  <td><strong>🇮🇪 Dublin City University (DCU)</strong><br><small>Dublin</small></td>
+  <td>MSc Computing — Artificial Intelligence</td>
+  <td>#410</td>
+  <td>€20,000<br><small style='color:#888'>₹18.0L</small></td>
+  <td>€16,800<br><small style='color:#888'>₹15.1L</small></td>
+  <td class="t-o"><strong>€36,800</strong><br><strong>₹33.1L</strong></td>
+  <td>1 year</td>
+  <td>❌</td>
+  <td>24 months (Stamp 1G)</td>
+</tr><tr>
+  <td><strong>🇮🇪 Trinity College Dublin (TCD)</strong><br><small>Dublin</small></td>
+  <td>MSc CS — Intelligent Systems</td>
+  <td>#87 (QS 2026: #75)</td>
+  <td>€27,790<br><small style='color:#888'>₹25.0L</small></td>
+  <td>€16,800<br><small style='color:#888'>₹15.1L</small></td>
+  <td class="t-o"><strong>€44,590</strong><br><strong>₹40.1L</strong></td>
+  <td>1 year</td>
+  <td>❌</td>
+  <td>24 months (Stamp 1G)</td>
+</tr><tr>
+  <td><strong>🇮🇪 University College Dublin (UCD)</strong><br><small>Dublin</small></td>
+  <td>MSc Advanced Artificial Intelligence</td>
+  <td>#118</td>
+  <td>€31,780<br><small style='color:#888'>₹28.6L</small></td>
+  <td>€16,800<br><small style='color:#888'>₹15.1L</small></td>
+  <td class="t-o"><strong>€48,580</strong><br><strong>₹43.7L</strong></td>
+  <td>1 year</td>
+  <td>❌</td>
+  <td>24 months (Stamp 1G)</td>
+</tr><tr>
+  <td><strong>🇨🇭 EPFL</strong><br><small>Lausanne</small></td>
+  <td>MSc Robotics</td>
+  <td>#17</td>
+  <td>€9,200<br><small style='color:#888'>₹8.3L</small></td>
+  <td>€40,800<br><small style='color:#888'>₹36.7L</small></td>
+  <td class="t-o"><strong>€50,000</strong><br><strong>₹45.0L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>6-month job-seeking extension</td>
+</tr><tr>
+  <td><strong>🇸🇪 Chalmers University of Technology</strong><br><small>Gothenburg</small></td>
+  <td>MSc Data Science and AI</td>
+  <td>#139</td>
+  <td>€28,600<br><small style='color:#888'>₹25.7L</small></td>
+  <td>€22,800<br><small style='color:#888'>₹20.5L</small></td>
+  <td class="t-o"><strong>€51,400</strong><br><strong>₹46.3L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month job-seeking permit</td>
+</tr><tr>
+  <td><strong>🇸🇬 Nanyang Technological University (NTU)</strong><br><small>Singapore</small></td>
+  <td>MSc Artificial Intelligence (MSAI)</td>
+  <td>#15 (#5 AI globally)</td>
+  <td>€42,458<br><small style='color:#888'>₹38.2L</small></td>
+  <td>€14,400<br><small style='color:#888'>₹13.0L</small></td>
+  <td class="t-o"><strong>€56,858</strong><br><strong>₹51.2L</strong></td>
+  <td>1 year</td>
+  <td>❌</td>
+  <td>12-month LTVP job-search → Employment Pass after offer</td>
+</tr><tr>
+  <td><strong>🇸🇪 KTH Royal Institute of Technology</strong><br><small>Stockholm</small></td>
+  <td>MSc Machine Learning</td>
+  <td>#74</td>
+  <td>€32,000<br><small style='color:#888'>₹28.8L</small></td>
+  <td>€24,888<br><small style='color:#888'>₹22.4L</small></td>
+  <td class="t-o"><strong>€56,888</strong><br><strong>₹51.2L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month job-seeking permit</td>
+</tr><tr>
+  <td><strong>🇨🇭 ETH Zurich</strong><br><small>Zurich</small></td>
+  <td>MSc Robotics, Systems and Control</td>
+  <td>#7</td>
+  <td>€9,200<br><small style='color:#888'>₹8.3L</small></td>
+  <td>€48,000<br><small style='color:#888'>₹43.2L</small></td>
+  <td class="t-o"><strong>€57,200</strong><br><strong>₹51.5L</strong></td>
+  <td>2 years</td>
+  <td>✅</td>
+  <td>6-month job-seeking extension</td>
+</tr><tr>
+  <td><strong>🇩🇰 DTU (Technical Univ. of Denmark)</strong><br><small>Copenhagen</small></td>
+  <td>MSc Autonomous Systems</td>
+  <td>#109</td>
+  <td>€30,000<br><small style='color:#888'>₹27.0L</small></td>
+  <td>€27,600<br><small style='color:#888'>₹24.8L</small></td>
+  <td class="t-o"><strong>€57,600</strong><br><strong>₹51.8L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>3 years (longest in Europe!)</td>
+</tr><tr>
+  <td><strong>🇫🇮 Aalto University</strong><br><small>Espoo (Helsinki)</small></td>
+  <td>MSc ML, Data Science & AI — Macadamia</td>
+  <td>#115</td>
+  <td>€34,000<br><small style='color:#888'>₹30.6L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-o"><strong>€58,000</strong><br><strong>₹52.2L</strong></td>
+  <td>2 years</td>
+  <td>✅</td>
+  <td>2 years (best Nordic post-study!)</td>
+</tr><tr>
+  <td><strong>🇦🇺 University of Queensland (UQ)</strong><br><small>Brisbane</small></td>
+  <td>Master of Computer Science</td>
+  <td>#40</td>
+  <td>€35,414<br><small style='color:#888'>₹31.9L</small></td>
+  <td>€25,200<br><small style='color:#888'>₹22.7L</small></td>
+  <td class="t-o"><strong>€60,614</strong><br><strong>₹54.6L</strong></td>
+  <td>1 year (fast-track)</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485 Graduate Visa)</td>
+</tr><tr>
+  <td><strong>🇳🇱 TU/e Eindhoven</strong><br><small>Eindhoven</small></td>
+  <td>MSc Data Science and Artificial Intelligence</td>
+  <td>#179</td>
+  <td>€40,000<br><small style='color:#888'>₹36.0L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-o"><strong>€64,000</strong><br><strong>₹57.6L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Orientation Year (Zoekjaar)</td>
+</tr><tr>
+  <td><strong>🇸🇬 National University of Singapore (NUS)</strong><br><small>Singapore</small></td>
+  <td>MComp — AI Specialisation</td>
+  <td>#8</td>
+  <td>€45,087<br><small style='color:#888'>₹40.6L</small></td>
+  <td>€21,600<br><small style='color:#888'>₹19.4L</small></td>
+  <td class="t-r"><strong>€66,687</strong><br><strong>₹60.0L</strong></td>
+  <td>1 year (fast-track)</td>
+  <td>✅</td>
+  <td>12-month LTVP job-search → Employment Pass</td>
+</tr><tr>
+  <td><strong>🇳🇱 TU Delft</strong><br><small>Delft</small></td>
+  <td>MSc Robotics / MSc Computer Science</td>
+  <td>#49</td>
+  <td>€51,000<br><small style='color:#888'>₹45.9L</small></td>
+  <td>€24,000<br><small style='color:#888'>₹21.6L</small></td>
+  <td class="t-r"><strong>€75,000</strong><br><strong>₹67.5L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Orientation Year (Zoekjaar)</td>
+</tr><tr>
+  <td><strong>🇦🇺 Monash University</strong><br><small>Melbourne</small></td>
+  <td>Master of Artificial Intelligence</td>
+  <td>#37</td>
+  <td>€56,700<br><small style='color:#888'>₹51.0L</small></td>
+  <td>€27,000<br><small style='color:#888'>₹24.3L</small></td>
+  <td class="t-r"><strong>€83,700</strong><br><strong>₹75.3L</strong></td>
+  <td>1 year (fast-track)</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr><tr>
+  <td><strong>🇳🇱 University of Amsterdam (UvA)</strong><br><small>Amsterdam</small></td>
+  <td>MSc Artificial Intelligence</td>
+  <td>#55</td>
+  <td>€52,000<br><small style='color:#888'>₹46.8L</small></td>
+  <td>€32,400<br><small style='color:#888'>₹29.2L</small></td>
+  <td class="t-r"><strong>€84,400</strong><br><strong>₹76.0L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>12-month Orientation Year (Zoekjaar)</td>
+</tr><tr>
+  <td><strong>🇦🇺 University of Adelaide</strong><br><small>Adelaide</small></td>
+  <td>Master of AI & Machine Learning</td>
+  <td>#82</td>
+  <td>€66,978<br><small style='color:#888'>₹60.3L</small></td>
+  <td>€26,400<br><small style='color:#888'>₹23.8L</small></td>
+  <td class="t-r"><strong>€93,378</strong><br><strong>₹84.0L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr><tr>
+  <td><strong>🇦🇺 Australian National University (ANU)</strong><br><small>Canberra</small></td>
+  <td>Master of Machine Learning & CV</td>
+  <td>#30</td>
+  <td>€68,466<br><small style='color:#888'>₹61.6L</small></td>
+  <td>€30,000<br><small style='color:#888'>₹27.0L</small></td>
+  <td class="t-r"><strong>€98,466</strong><br><strong>₹88.6L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr><tr>
+  <td><strong>🇦🇺 University of Sydney</strong><br><small>Sydney</small></td>
+  <td>Master of CS — Data Science & AI</td>
+  <td>#18</td>
+  <td>€67,222<br><small style='color:#888'>₹60.5L</small></td>
+  <td>€42,000<br><small style='color:#888'>₹37.8L</small></td>
+  <td class="t-r"><strong>€109,222</strong><br><strong>₹98.3L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr><tr>
+  <td><strong>🇦🇺 University of Melbourne</strong><br><small>Melbourne</small></td>
+  <td>Master of Computer Science</td>
+  <td>#13</td>
+  <td>€76,830<br><small style='color:#888'>₹69.1L</small></td>
+  <td>€36,000<br><small style='color:#888'>₹32.4L</small></td>
+  <td class="t-r"><strong>€112,830</strong><br><strong>₹101.5L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr><tr>
+  <td><strong>🇦🇺 UNSW Sydney</strong><br><small>Sydney</small></td>
+  <td>Master of IT — AI Specialisation</td>
+  <td>#19</td>
+  <td>€79,605<br><small style='color:#888'>₹71.6L</small></td>
+  <td>€42,000<br><small style='color:#888'>₹37.8L</small></td>
+  <td class="t-r"><strong>€121,605</strong><br><strong>₹109.4L</strong></td>
+  <td>2 years</td>
+  <td>❌</td>
+  <td>2 years (Subclass 485)</td>
+</tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="tl-section">
+  <h2>🗓️ Application Roadmap — Winter 2027</h2>
+  <div class="tl">
+    <div class="tli"><div class="dot"></div><div class="tdate">June 2026 — NOW</div><div class="ttitle">Start Immediately</div><div class="tbody">Apply for APS Certificate at German Embassy India (~3–5 months, €165). Register for GRE — take free diagnostic on ETS website. Begin IELTS prep. Get certified VIT transcripts. Start shortlisting universities.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">Jul – Aug 2026</div><div class="ttitle">GRE & IELTS Preparation</div><div class="tbody">4–6 weeks focused GRE prep (target Quant 164+, AW 4.0+). IELTS coaching. Research specific programs and note scholarship deadlines. Get VIT module handbook for German university curricular analysis.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">September 2026</div><div class="ttitle">GRE & IELTS Exams</div><div class="tbody">Attempt GRE (first attempt — leaves retake window in Nov if needed). Attempt IELTS/TOEFL. APS certificate should be arriving around this time — follow up with embassy if delayed.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">Oct – Nov 2026</div><div class="ttitle">GRE Retake + Application Drafting</div><div class="tbody">GRE retake if needed. Draft Statement of Purpose / Motivation Letter. Start Curricular Analysis forms (German universities). Research all scholarship deadlines — many close in December. Uni-assist VPD registration (Germany).</div></div>
+    <div class="tli"><div class="dot" style="background:#F39C12"></div><div class="tdate">Dec 1, 2026 ⚡ URGENT</div><div class="ttitle">ETH Zurich Deadline</div><div class="tbody">ETH Zurich MSc Robotics (#7 globally, €57,200 all-in). GRE required (Quant 168). Apply now — do NOT miss this if aiming for world-class robotics.</div></div>
+    <div class="tli"><div class="dot" style="background:#F39C12"></div><div class="tdate">Dec 15, 2026 ⚡ URGENT</div><div class="ttitle">EPFL Excellence Fellowship</div><div class="tbody">EPFL MSc Robotics (#17 globally, €50,000 all-in). Excellence Fellowship = CHF 10,000/semester + full tuition waiver. Apply by Dec 15 for fellowship consideration. Regular deadline April 2027.</div></div>
+    <div class="tli"><div class="dot" style="background:#F39C12"></div><div class="tdate">Jan 2–15, 2027 ⚡ MAJOR</div><div class="ttitle">Aalto · KTH · Chalmers · DTU · UvA · NUS</div><div class="tbody">Aalto Finland (Jan 2), KTH Sweden + Chalmers Sweden + DTU Denmark (Jan 15, 3-year post-study!), UvA Netherlands (Jan 15), NUS Singapore (Jan 31). Have ALL documents finalized before January 1.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">Feb – Mar 2027</div><div class="ttitle">Germany + Belgium</div><div class="tbody">RWTH Aachen Data Science (Mar 1), KU Leuven AI Belgium (Mar 1, ₹19L all-in at #73!), TU Berlin (rolling, Aug deadline). Submit VPD via uni-assist for German programs.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">Apr – May 2027</div><div class="ttitle">Remaining Europe + Australia</div><div class="tbody">TU Delft Robotics (Apr 1), DCU Ireland (Apr 6), TU/e Netherlands (May 1), Saarland (May 15). Apply to Australian July 2027 intake: UQ, ANU, Monash, Adelaide. Graduate from VIT (~May–Jun 2027).</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">May – Jun 2027</div><div class="ttitle">Graduate + Final Applications</div><div class="tbody">Graduate from VIT 🎓. Trinity Dublin (Jun 30), Hamburg (Jun 15), TU Dresden (Jul 15), PoliMi Milan (Jul round), TU Wien (rolling), TU Graz (Dec 2027). Apply NTU Singapore for Jan 2028 intake.</div></div>
+    <div class="tli"><div class="dot"></div><div class="tdate">Jun – Aug 2027</div><div class="ttitle">Receive Offers + Visa</div><div class="tbody">Receive admission decisions. Accept best offer. Apply for student visa immediately (German/Austrian visas: 8–12 weeks). Arrange health insurance for enrollment. Arrange accommodation early.</div></div>
+    <div class="tli"><div class="dot" style="background:#27AE60"></div><div class="tdate">Oct 2027 🎉</div><div class="ttitle">Start Your MSc!</div><div class="tbody">Begin Winter 2027 semester. For Australia/Singapore July 2027 intake, start July 2027.</div></div>
+  </div>
+</div>
+
+<footer>
+  <p>Built for Aditya · VIT Chennai · BTech CSE AI & Robotics · 9.52 CGPA · Winter 2027</p>
+  <p style="margin-top:5px">€1 ≈ ₹90 used for INR estimates · Living costs include rent, food, transport, utilities, misc · Always verify all details directly with universities before applying</p>
+</footer>
+
+<script>
+const cards = Array.from(document.querySelectorAll('.card'));
+function go() {
+  const reg = document.getElementById('fRegion').value;
+  const gre = document.getElementById('fGRE').value;
+  const bud = parseInt(document.getElementById('fBudget').value);
+  const srt = document.getElementById('fSort').value;
+  const grid = document.getElementById('grid');
+  let vis = [];
+  cards.forEach(c => {
+    const ok = (reg==='all'||c.dataset.region===reg) &&
+               (gre==='all'||c.dataset.gre===gre) &&
+               (parseInt(c.dataset.allin)*90 <= bud);
+    c.classList.toggle('hidden', !ok);
+    if(ok) vis.push(c);
+  });
+  vis.sort((a,b) => {
+    if(srt==='allin') return parseInt(a.dataset.allin)-parseInt(b.dataset.allin);
+    if(srt==='qs')    return parseInt(a.dataset.qs)-parseInt(b.dataset.qs);
+    if(srt==='country') return a.dataset.country.localeCompare(b.dataset.country);
+  });
+  vis.forEach(c => grid.appendChild(c));
+  document.getElementById('cnt').textContent = vis.length+' programs shown';
+}
+go();
+</script>
+<script src="calendar-data.js"></script>
+<script>
+// ── CENTRAL CALENDAR ──
+const calState = { year: new Date().getFullYear(), mo: new Date().getMonth(), selDay: null };
+const CAL_MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function calGetChecked() {
+  const s = new Set();
+  document.querySelectorAll('#cal-sidebar input[type=checkbox]:checked').forEach(cb => s.add(cb.value));
+  return s;
+}
+function calAll(v) {
+  document.querySelectorAll('#cal-sidebar input[type=checkbox]').forEach(cb => cb.checked = v);
+  renderCal();
+}
+function calPrepOnly() {
+  document.querySelectorAll('#cal-sidebar input[type=checkbox]').forEach(cb => { cb.checked = cb.value === 'preparation'; });
+  renderCal();
+}
+function calNav(dir) {
+  calState.mo += dir;
+  if (calState.mo > 11) { calState.mo = 0; calState.year++; }
+  if (calState.mo < 0)  { calState.mo = 11; calState.year--; }
+  calState.selDay = null;
+  renderCal();
+}
+function calGoToday() {
+  const n = new Date();
+  calState.year = n.getFullYear(); calState.mo = n.getMonth(); calState.selDay = null;
+  renderCal();
+}
+function calSelectDay(d) { calState.selDay = calState.selDay === d ? null : d; renderCal(); }
+function calToggleDone(id) {
+  const k = 'cal:' + id;
+  localStorage.setItem(k, localStorage.getItem(k) === '1' ? '0' : '1');
+  renderCal();
+}
+function calIsDone(id) { return localStorage.getItem('cal:' + id) === '1'; }
+
+function renderCal() {
+  if (typeof CAL_EVENTS === 'undefined') return;
+  const checked = calGetChecked();
+  const allEvts = CAL_EVENTS.filter(e => checked.has(e.uni));
+
+  const evtMap = {};
+  allEvts.forEach(e => { if (!evtMap[e.date]) evtMap[e.date] = []; evtMap[e.date].push(e); });
+
+  document.getElementById('cal-title').textContent = CAL_MONTH_NAMES[calState.mo] + ' ' + calState.year;
+
+  const firstDay = new Date(calState.year, calState.mo, 1);
+  const lastDay  = new Date(calState.year, calState.mo + 1, 0);
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const startDow = (firstDay.getDay() + 6) % 7;
+  const totalCells = Math.ceil((startDow + lastDay.getDate()) / 7) * 7;
+
+  let grid = '';
+  for (let i = 0; i < totalCells; i++) {
+    const d = i - startDow + 1;
+    const inMonth = d >= 1 && d <= lastDay.getDate();
+    const dateStr = inMonth ? calState.year + '-' + String(calState.mo + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0') : '';
+    const evts = dateStr ? (evtMap[dateStr] || []) : [];
+    let cls = 'cal-cell' + (inMonth ? '' : ' dim') + (dateStr === todayStr ? ' today' : '') + (calState.selDay === dateStr && dateStr ? ' sel' : '');
+    const click = dateStr ? `onclick="calSelectDay('${dateStr}')"` : '';
+    const pills = evts.slice(0, 3).map(e => {
+      const c = calIsDone(e.id) ? '#aaa' : (CAL_COLORS[e.uni] || '#7B8EC8');
+      const icon = e.type === 'deadline' ? '● ' : e.type === 'exam' ? '✎ ' : e.type === 'milestone' ? '★ ' : '· ';
+      const short = e.title.replace(/^[^—–-]*[—–-]\s*/,'').substring(0, 20);
+      return `<div class="cal-pill" style="background:${c}" title="${e.title}">${calIsDone(e.id) ? '✓ ' : icon}${short}</div>`;
+    }).join('');
+    const more = evts.length > 3 ? `<div class="cal-more">+${evts.length - 3} more</div>` : '';
+    grid += `<div class="${cls}" ${click}><div class="cal-dnum">${inMonth ? d : ''}</div><div class="cal-pills">${pills}${more}</div></div>`;
+  }
+  document.getElementById('cal-days').innerHTML = grid;
+
+  let panelEvts, panelTitle;
+  if (calState.selDay) {
+    panelEvts = evtMap[calState.selDay] || [];
+    const d2 = new Date(calState.selDay + 'T12:00:00');
+    panelTitle = d2.toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  } else {
+    panelEvts = allEvts.filter(e => { const [y,m] = e.date.split('-').map(Number); return y === calState.year && m === calState.mo + 1; }).sort((a,b) => a.date.localeCompare(b.date));
+    panelTitle = 'Events in ' + CAL_MONTH_NAMES[calState.mo] + ' ' + calState.year;
+  }
+  document.getElementById('cal-panel-head').textContent = panelTitle + (panelEvts.length ? ` (${panelEvts.length})` : '');
+
+  if (!panelEvts.length) { document.getElementById('cal-evt-list').innerHTML = '<div class="cal-no-evts">No events for this period with current filters.</div>'; return; }
+
+  document.getElementById('cal-evt-list').innerHTML = panelEvts.map(e => {
+    const done = calIsDone(e.id);
+    const c = CAL_COLORS[e.uni] || '#7B8EC8';
+    const name = CAL_NAMES[e.uni] || e.uni;
+    const icon = e.type === 'deadline' ? '🔴' : e.type === 'exam' ? '📝' : e.type === 'milestone' ? '🎉' : '📌';
+    const pri = e.priority === 'urgent' ? '<span style="color:#C0392B;font-weight:700;font-size:.72rem">⚡ URGENT</span>'
+              : e.priority === 'high'   ? '<span style="color:#C67C2B;font-weight:600;font-size:.72rem">★ High</span>' : '';
+    const d3 = new Date(e.date + 'T12:00:00');
+    const dl = d3.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
+    return `<div class="cal-evt-row">
+      <div class="cal-check${done?' done':''}" onclick="calToggleDone('${e.id}')">${done?'✓':''}</div>
+      <div class="cal-evt-body">
+        <div class="cal-evt-top">
+          <span class="cal-evt-name${done?' crossed':''}">${icon} ${e.title}</span>
+          <span class="cal-uni-tag" style="background:${c}">${name}</span>${pri}
+        </div>
+        <div class="cal-evt-date">📅 ${dl}</div>
+        ${e.note ? `<div class="cal-evt-note">${e.note}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderCal();
+</script>
+</body>
+</html>
