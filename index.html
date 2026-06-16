@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <script>
-if (localStorage.getItem('msc-auth') === '1') {
+if (sessionStorage.getItem('msc-auth') === '1') {
   location.replace('MSc_Global_Guide.html');
 } else {
   location.replace('login.html');

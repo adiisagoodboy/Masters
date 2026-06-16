@@ -42,7 +42,7 @@ function tryLogin() {
   const val = document.getElementById('name').value.trim().toLowerCase();
   const allowed = ['aditya', 'dad', 'appa', 'papa'];
   if (allowed.includes(val)) {
-    localStorage.setItem('msc-auth', '1');
+    sessionStorage.setItem('msc-auth', '1');
     location.replace('MSc_Global_Guide.html');
   } else {
     const inp = document.getElementById('name');
